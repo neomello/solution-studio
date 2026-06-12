@@ -1,0 +1,59 @@
+---
+---
+
+<div class="status-badge">
+  <span class="status-dot" aria-hidden="true"></span>
+  <span class="status-label">TC Importação e Exportação LTDA</span>
+</div>
+
+<style>
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #2CB6FF;
+    box-shadow: 0 0 8px rgba(44, 182, 255, 0.6);
+    animation: dot-pulse 2.5s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  .status-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: uppercase;
+  }
+
+  @keyframes dot-pulse {
+    0%, 100% { opacity: 0.6; box-shadow: 0 0 6px rgba(44, 182, 255, 0.4); }
+    50% { opacity: 1; box-shadow: 0 0 12px rgba(44, 182, 255, 0.8); }
+  }
+
+  @media (max-width: 767px) {
+    .status-badge {
+      max-width: 100%;
+      padding: 5px 11px;
+      gap: 7px;
+    }
+
+    .status-label {
+      font-size: 9px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+</style>

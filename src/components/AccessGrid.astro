@@ -1,0 +1,39 @@
+---
+import AccessCard from './AccessCard.astro';
+import { portalLinks } from '../data/links';
+---
+
+<section class="access-grid" aria-label="Links de acesso">
+  {portalLinks.map((link, i) => (
+    <AccessCard
+      id={link.id}
+      label={link.label}
+      description={link.description}
+      href={link.href}
+      external={link.external}
+      index={i}
+      event={link.event}
+    />
+  ))}
+</section>
+
+<style>
+  .access-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  @media (max-width: 767px) {
+    .access-grid {
+      gap: 10px;
+    }
+  }
+
+  @media (max-width: 380px), (max-height: 720px) {
+    .access-grid {
+      gap: 8px;
+    }
+  }
+</style>

@@ -1,0 +1,95 @@
+---
+import { Image } from 'astro:assets';
+import OfficialStatus from './OfficialStatus.astro';
+---
+
+<header class="portal-header">
+  <div class="header-logo brand-enter">
+    <Image
+      src="/logos/tc-logo.svg"
+      alt="TC Partners - assessoria em importação e exportação"
+      class="brand-logo"
+      width="434"
+      height="145"
+      priority
+    />
+  </div>
+
+  <div class="slide-up stagger-2">
+    <OfficialStatus />
+  </div>
+</header>
+
+<style>
+  .portal-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    padding-top: 48px;
+    padding-bottom: 8px;
+    text-align: center;
+  }
+
+  .header-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .brand-logo {
+    width: min(100%, 330px);
+    height: auto;
+    object-fit: contain;
+    display: block;
+  }
+
+  .header-signature {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(2, 184, 249, 0.55);
+    letter-spacing: 0.04em;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .brand-enter {
+      animation: brandEnter 600ms cubic-bezier(0.22, 1, 0.36, 1) both;
+      animation-delay: 100ms;
+    }
+  }
+
+  @keyframes brandEnter {
+    from { opacity: 0; transform: translateY(8px); filter: blur(4px); }
+    to   { opacity: 1; transform: translateY(0); filter: blur(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .brand-enter { animation: none; }
+  }
+
+  @media (max-width: 767px) {
+    .portal-header {
+      gap: 10px;
+      padding-top: 18px;
+      padding-bottom: 0;
+    }
+
+    .brand-logo {
+      width: min(76vw, 300px);
+      max-height: 100px;
+    }
+  }
+
+  @media (max-width: 380px), (max-height: 720px) {
+    .portal-header {
+      gap: 8px;
+      padding-top: 10px;
+    }
+
+    .brand-logo {
+      width: min(72vw, 270px);
+      max-height: 88px;
+    }
+  }
+</style>

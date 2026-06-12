@@ -1,0 +1,146 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BackgroundMotion from '../components/BackgroundMotion.astro';
+import SplashIntro from '../components/SplashIntro.astro';
+import PortalHeader from '../components/PortalHeader.astro';
+import AccessGrid from '../components/AccessGrid.astro';
+import SaveContact from '../components/SaveContact.astro';
+import ItajaiClock from '../components/ItajaiClock.astro';
+import PWAPrompt from '../components/PWAPrompt.astro';
+import QRCode from '../components/QRCode.astro';
+---
+
+<BaseLayout>
+  <SplashIntro />
+  <PWAPrompt />
+  <BackgroundMotion />
+
+  <main class="portal-main">
+    <div class="portal-container">
+      <PortalHeader />
+
+      <div class="portal-links slide-up stagger-3">
+        <AccessGrid />
+      </div>
+
+      <div class="portal-actions slide-up stagger-4">
+        <SaveContact />
+      </div>
+
+      <QRCode />
+
+      <ItajaiClock />
+
+      <footer class="portal-footer slide-up stagger-6">
+        <p class="footer-signature">Parceiros para ir além das fronteiras_</p>
+        <p>© {new Date().getFullYear()} TC Partners · Todos os direitos reservados</p>
+        <p class="footer-cnpj">CNPJ 24.825.654/0001-12 · Itajaí · SC · Brasil</p>
+      </footer>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .portal-main {
+    position: relative;
+    z-index: 1;
+    min-height: 100dvh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: calc(48px + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+    padding-left: calc(16px + env(safe-area-inset-left, 0px));
+    padding-right: calc(16px + env(safe-area-inset-right, 0px));
+  }
+
+  .portal-container {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .portal-links {
+    width: 100%;
+  }
+
+  .portal-actions {
+    display: flex;
+    justify-content: center;
+  }
+
+  .portal-footer {
+    text-align: center;
+    padding-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .portal-footer p {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.02em;
+  }
+
+  .footer-signature {
+    font-size: 12px !important;
+    color: rgba(2, 184, 249, 0.5) !important;
+    letter-spacing: 0.04em;
+    margin-bottom: 4px;
+  }
+
+  .footer-cnpj {
+    font-size: 10px !important;
+    color: rgba(255, 255, 255, 0.12) !important;
+  }
+
+  @media (max-width: 767px) {
+    .portal-main {
+      min-height: 100svh;
+      padding-top: calc(22px + env(safe-area-inset-top, 0px));
+      padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+      padding-left: calc(16px + env(safe-area-inset-left, 0px));
+      padding-right: calc(16px + env(safe-area-inset-right, 0px));
+    }
+
+    .portal-container {
+      min-height: calc(100svh - 36px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+      gap: clamp(12px, 2.2svh, 18px);
+      justify-content: center;
+    }
+
+    .portal-footer {
+      gap: 2px;
+      padding-bottom: 0;
+    }
+
+    .portal-footer p {
+      font-size: 10px;
+      line-height: 1.25;
+    }
+
+    .footer-signature {
+      font-size: 11px !important;
+      margin-bottom: 2px;
+    }
+
+    .footer-cnpj {
+      font-size: 9px !important;
+    }
+  }
+
+  @media (max-width: 380px), (max-height: 720px) {
+    .portal-main {
+      padding-top: calc(18px + env(safe-area-inset-top, 0px));
+      padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    }
+
+    .portal-container {
+      min-height: calc(100svh - 28px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+      gap: 10px;
+    }
+  }
+</style>

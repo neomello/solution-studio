@@ -1,0 +1,73 @@
+---
+import QRCode from 'qrcode';
+
+const url = 'https://tcpartners.com.br';
+
+const svgString = await QRCode.toString(url, {
+  type: 'svg',
+  width: 120,
+  margin: 1,
+  color: {
+    dark: '#FFFFFF',
+    light: '#00000000', // transparente
+  },
+  errorCorrectionLevel: 'M',
+});
+---
+
+<div class="qr-wrap slide-up stagger-5">
+  <div class="qr-card">
+    <div class="qr-image" set:html={svgString} />
+    <p class="qr-label">Abrir no celular</p>
+  </div>
+</div>
+
+<style>
+  /* Visível apenas em desktop */
+  .qr-wrap {
+    display: none;
+    justify-content: center;
+  }
+
+  @media (min-width: 768px) {
+    .qr-wrap {
+      display: flex;
+    }
+  }
+
+  .qr-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  .qr-image {
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.75;
+  }
+
+  .qr-image :global(svg) {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+  }
+
+  .qr-label {
+    font-size: 11px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+</style>

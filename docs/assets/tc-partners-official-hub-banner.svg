@@ -1,0 +1,66 @@
+<svg width="1200" height="420" viewBox="0 0 1200 420" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">TC Partners Official Hub banner</title>
+  <desc id="desc">Production banner for the TC Partners Astro PWA official hub on tcpartners.com.br.</desc>
+  <defs>
+    <linearGradient id="tcCard" x1="90" y1="42" x2="1110" y2="378" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0A0726"/>
+      <stop offset="0.55" stop-color="#000522"/>
+      <stop offset="1" stop-color="#050218"/>
+    </linearGradient>
+    <radialGradient id="tcCore" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(170 166) rotate(52) scale(94)">
+      <stop stop-color="#02B8F9"/>
+      <stop offset="0.42" stop-color="#3729BE"/>
+      <stop offset="1" stop-color="#001674"/>
+    </radialGradient>
+    <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="0" stdDeviation="18" flood-color="#02B8F9" flood-opacity="0.2"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="420" fill="#09131A"/>
+  <rect x="44" y="34" width="1112" height="352" rx="24" fill="url(#tcCard)" stroke="#173245"/>
+  <rect x="64" y="54" width="1072" height="312" rx="18" stroke="#02B8F9" stroke-opacity="0.12"/>
+
+  <text x="88" y="84" fill="#6EE7F9" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace" font-size="13" letter-spacing="4">TC IMPORTACAO E EXPORTACAO LTDA · ASTRO PWA · CPANEL PRODUCTION</text>
+
+  <g filter="url(#softGlow)">
+    <circle cx="172" cy="178" r="72" fill="url(#tcCore)" opacity="0.92"/>
+    <circle cx="172" cy="178" r="48" stroke="#E8F4F8" stroke-width="10" opacity="0.9"/>
+    <circle cx="172" cy="178" r="22" fill="#000522"/>
+    <path d="M164 118H197C222 118 238 135 241 158H206C202 149 194 144 182 144H164V118Z" fill="#FFFFFF"/>
+    <path d="M164 212H197C222 212 238 195 241 172H206C202 181 194 186 182 186H164V212Z" fill="#FFFFFF"/>
+    <rect x="130" y="144" width="42" height="42" rx="8" fill="#FFFFFF"/>
+    <rect x="164" y="118" width="15" height="94" fill="#000522"/>
+  </g>
+
+  <path d="M252 156H305" stroke="#6EE7F9" stroke-width="2" stroke-linecap="round"/>
+  <path d="M252 178H305" stroke="#6EE7F9" stroke-width="2" stroke-linecap="round" opacity="0.78"/>
+  <path d="M252 200H305" stroke="#6EE7F9" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+
+  <rect x="306" y="118" width="270" height="124" rx="16" fill="#0B151C" stroke="#1D4054"/>
+  <text x="332" y="153" fill="#02B8F9" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace" font-size="13">src/pages/index.astro</text>
+  <text x="332" y="181" fill="#D7FF64" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace" font-size="18">renderHub()</text>
+  <text x="332" y="209" fill="#E8F4F8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace" font-size="18">installPWA()</text>
+  <text x="332" y="237" fill="#E8F4F8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace" font-size="18">trackClicks()</text>
+
+  <path d="M590 180H650" stroke="#6EE7F9" stroke-width="2" stroke-linecap="round"/>
+  <path d="M641 171L650 180L641 189" stroke="#6EE7F9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <rect x="666" y="96" width="380" height="168" rx="18" fill="#0B151C" stroke="#1D4054"/>
+  <text x="694" y="132" fill="#D7FF64" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace" font-size="19" font-weight="700">OFFICIAL HUB CONTRACT</text>
+  <text x="694" y="168" fill="#E8F4F8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace" font-size="17">Astro 6 static app · cPanel public_html</text>
+  <text x="694" y="201" fill="#E8F4F8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace" font-size="17">PWA manifest · Workbox SW · iOS prompt</text>
+  <text x="694" y="234" fill="#E8F4F8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace" font-size="17">SEO metadata · JSON-LD · robots + manifest</text>
+
+  <g opacity="0.92">
+    <rect x="674" y="286" width="210" height="36" rx="18" fill="#10222D" stroke="#02B8F9" stroke-opacity="0.32"/>
+    <text x="696" y="310" fill="#9BB7C3" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace" font-size="13">tcpartners.com.br</text>
+    <rect x="900" y="286" width="84" height="36" rx="18" fill="#10222D" stroke="#02B8F9" stroke-opacity="0.32"/>
+    <text x="922" y="310" fill="#9BB7C3" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace" font-size="13">cPanel</text>
+    <rect x="1000" y="286" width="94" height="36" rx="18" fill="#10222D" stroke="#02B8F9" stroke-opacity="0.32"/>
+    <text x="1020" y="310" fill="#9BB7C3" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace" font-size="13">Astro 6</text>
+  </g>
+
+  <text x="88" y="315" fill="#E8F4F8" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace" font-size="44" font-weight="700">tc-partners-official-hub</text>
+  <text x="90" y="347" fill="#9BB7C3" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace" font-size="17">Official TC Partners channel hub: brand, access links, PWA install flow and cPanel deploy.</text>
+</svg>

@@ -1,0 +1,241 @@
+---
+---
+
+<div class="pwa-prompt" id="pwa-prompt" aria-live="polite" aria-hidden="true">
+  <div class="pwa-inner">
+    <button class="pwa-action" id="pwa-install-btn" type="button" aria-describedby="pwa-help">
+      <span class="pwa-icon" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.55" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 15V3" />
+          <path d="m7 8 5-5 5 5" />
+          <path d="M6 11H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2h-1" />
+        </svg>
+      </span>
+      <span class="pwa-label">Adicionar app</span>
+    </button>
+    <button class="pwa-close" id="pwa-close" aria-label="Fechar">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <path d="M18 6 6 18M6 6l12 12"/>
+      </svg>
+    </button>
+  </div>
+  <p class="pwa-help" id="pwa-help"></p>
+</div>
+
+<script>
+  (function () {
+    const prompt = document.getElementById('pwa-prompt');
+    const closeBtn = document.getElementById('pwa-close');
+    const installBtn = document.getElementById('pwa-install-btn');
+    const helpText = document.getElementById('pwa-help');
+    if (!prompt) return;
+
+    // Não mostrar se já dispensou
+    if (sessionStorage.getItem('tc_pwa_dismissed')) return;
+
+    let deferredEvent = null;
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    const isStandalone =
+      window.matchMedia('(display-mode: standalone)').matches ||
+      (('standalone' in navigator) && navigator.standalone);
+
+    function getFallbackText() {
+      if (isIOS) return 'No Safari: compartilhar > Adicionar à Tela de Início.';
+      return 'Use o menu do navegador e escolha Instalar app.';
+    }
+
+    function show() {
+      prompt.classList.add('pwa-prompt--visible');
+      prompt.setAttribute('aria-hidden', 'false');
+      if (helpText) helpText.textContent = deferredEvent ? '' : getFallbackText();
+      window.dispatchEvent(new CustomEvent('tc:click', { detail: { event: 'pwa_install_prompt' } }));
+    }
+
+    function hide() {
+      prompt.classList.remove('pwa-prompt--visible');
+      prompt.setAttribute('aria-hidden', 'true');
+      sessionStorage.setItem('tc_pwa_dismissed', '1');
+    }
+
+    // Android / Chrome — beforeinstallprompt
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredEvent = e;
+      if (helpText) helpText.textContent = '';
+      setTimeout(show, 7000);
+    });
+
+    window.addEventListener('appinstalled', () => {
+      window.dispatchEvent(new CustomEvent('tc:click', { detail: { event: 'pwa_installed' } }));
+      hide();
+    });
+
+    // Clique no prompt — dispara install nativo
+    installBtn?.addEventListener('click', async () => {
+      if (deferredEvent) {
+        deferredEvent.prompt();
+        const { outcome } = await deferredEvent.userChoice;
+        if (outcome === 'accepted') {
+          window.dispatchEvent(new CustomEvent('tc:click', { detail: { event: 'pwa_installed' } }));
+        }
+        deferredEvent = null;
+        hide();
+        return;
+      }
+
+      if (helpText) {
+        helpText.textContent = getFallbackText();
+        prompt.classList.add('pwa-prompt--expanded');
+      }
+      window.dispatchEvent(new CustomEvent('tc:click', { detail: { event: 'pwa_install_fallback' } }));
+    });
+
+    closeBtn?.addEventListener('click', hide);
+
+    // iOS Safari — sem beforeinstallprompt, mostra após delay
+    if (isIOS && !isStandalone) {
+      setTimeout(show, 7000);
+    }
+  })();
+</script>
+
+<style>
+  .pwa-prompt {
+    position: fixed;
+    right: max(16px, env(safe-area-inset-right, 16px));
+    bottom: max(34px, calc(env(safe-area-inset-bottom, 0px) + 34px));
+    z-index: 50;
+    opacity: 0;
+    transform: translateY(8px) scale(0.96);
+    pointer-events: none;
+    transition:
+      opacity 300ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .pwa-prompt--visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  .pwa-inner {
+    display: grid;
+    grid-template-columns: 1fr 28px;
+    align-items: center;
+    gap: 6px;
+    min-height: 38px;
+    padding: 7px 8px 7px 12px;
+    background:
+      linear-gradient(145deg, rgba(255, 255, 255, 0.58), rgba(226, 232, 240, 0.32));
+    border: 1px solid rgba(255, 255, 255, 0.62);
+    border-radius: 999px;
+    backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    box-shadow:
+      0 10px 28px rgba(2, 6, 23, 0.24),
+      0 0 0 1px rgba(2, 184, 249, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.7),
+      inset 0 -1px 0 rgba(15, 23, 42, 0.08);
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .pwa-action {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #0f2f66;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .pwa-icon {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    filter: drop-shadow(0 1px 5px rgba(15, 47, 102, 0.18));
+  }
+
+  .pwa-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: currentColor;
+    letter-spacing: 0.01em;
+  }
+
+  .pwa-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    min-height: 28px;
+    border-radius: 50%;
+    color: rgba(55, 41, 190, 0.48);
+    flex-shrink: 0;
+    transition:
+      background 200ms ease,
+      color 200ms ease;
+    margin-left: 2px;
+    padding: 0;
+  }
+
+  .pwa-close:hover {
+    background: rgba(255, 255, 255, 0.26);
+    color: rgba(55, 41, 190, 0.75);
+  }
+
+  .pwa-help {
+    max-width: 258px;
+    margin-top: 8px;
+    margin-left: auto;
+    padding: 8px 12px;
+    border-radius: 14px;
+    background: rgba(0, 5, 34, 0.78);
+    border: 1px solid rgba(2, 184, 249, 0.2);
+    color: rgba(244, 247, 251, 0.76);
+    font-size: 11px;
+    line-height: 1.35;
+    opacity: 0;
+    transform: translateY(-4px);
+    pointer-events: none;
+    transition:
+      opacity 220ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .pwa-prompt--expanded .pwa-help,
+  .pwa-help:not(:empty) {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pwa-prompt,
+    .pwa-help {
+      transition: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .pwa-prompt {
+      right: max(12px, env(safe-area-inset-right, 12px));
+      bottom: max(16px, calc(env(safe-area-inset-bottom, 0px) + 16px));
+    }
+
+    .pwa-inner {
+      min-height: 36px;
+      padding: 6px 7px 6px 11px;
+    }
+
+    .pwa-help {
+      max-width: min(258px, calc(100vw - 32px));
+    }
+  }
+</style>
