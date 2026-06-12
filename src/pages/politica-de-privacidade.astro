@@ -1,0 +1,180 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Política de Privacidade — Studio Odonto"
+  description="Política de Privacidade e Proteção de Dados (LGPD) do Studio Odonto."
+>
+  <main class="policy-page">
+    <div class="policy-container fade-in">
+      <header class="policy-header">
+        <a href="/" class="back-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m15 18-6-6 6-6"/>
+          </svg>
+          Voltar ao Hub
+        </a>
+        <h1>Política de Privacidade</h1>
+        <p class="last-updated">Última atualização: Junho de 2026</p>
+      </header>
+
+      <section class="policy-content">
+        <h2>1. Introdução</h2>
+        <p>A <strong>Studio Odonto (Solution Odonto)</strong> tem o compromisso de proteger a sua privacidade e os seus dados pessoais. Esta política descreve como coletamos, usamos, armazenamos e protegemos suas informações de acordo com a Lei Geral de Proteção de Dados Pessoais (LGPD - Lei nº 13.709/2018).</p>
+
+        <h2>2. Coleta de Dados Pessoais</h2>
+        <p>Coletamos informações pessoais que você nos fornece voluntariamente por meio de nossos canais de atendimento (WhatsApp, E-mail, Formulários e Redes Sociais), tais como:</p>
+        <ul>
+          <li>Nome completo</li>
+          <li>Número de telefone / WhatsApp</li>
+          <li>Endereço de e-mail</li>
+          <li>Informações pertinentes ao agendamento de consultas e avaliações odontológicas</li>
+        </ul>
+
+        <h2>3. Uso das Informações</h2>
+        <p>Seus dados são utilizados exclusivamente para as seguintes finalidades:</p>
+        <ul>
+          <li>Agendamento, confirmação e acompanhamento de consultas.</li>
+          <li>Envio de comunicações referentes aos tratamentos, orçamentos e avisos importantes.</li>
+          <li>Melhoria contínua de nossos serviços e atendimento ao paciente.</li>
+          <li>Cumprimento de obrigações legais e regulatórias vigentes na área da saúde.</li>
+        </ul>
+
+        <h2>4. Compartilhamento de Dados</h2>
+        <p>A Studio Odonto não vende, aluga ou compartilha seus dados pessoais com terceiros para fins comerciais. O compartilhamento só ocorrerá quando estritamente necessário para a prestação do serviço odontológico (ex: laboratórios de prótese) ou por exigência legal.</p>
+
+        <h2>5. Armazenamento e Segurança</h2>
+        <p>Adotamos medidas técnicas e organizacionais rigorosas para proteger seus dados contra acessos não autorizados, perda ou alteração. Suas informações são mantidas pelo tempo necessário para a finalidade pela qual foram coletadas, ou conforme exigido por lei.</p>
+
+        <h2>6. Seus Direitos (LGPD)</h2>
+        <p>Você tem o direito de:</p>
+        <ul>
+          <li>Confirmar a existência de tratamento de seus dados.</li>
+          <li>Acessar, corrigir ou atualizar seus dados incompletos ou desatualizados.</li>
+          <li>Solicitar a exclusão de seus dados pessoais, ressalvados os casos de guarda obrigatória por lei (como prontuários médicos).</li>
+          <li>Revogar consentimentos concedidos anteriormente.</li>
+        </ul>
+
+        <h2>7. Tecnologias de Rastreamento e Pixels</h2>
+        <p>Nosso portal pode utilizar tecnologias de rastreamento (como o Pixel da Meta e Google Analytics) para entender melhor a interação dos usuários e otimizar nossas campanhas de comunicação. Esses dados são anonimizados e usados apenas para fins estatísticos e de marketing da própria clínica.</p>
+
+        <h2>8. Contato</h2>
+        <p>Para exercer seus direitos ou esclarecer dúvidas sobre esta política, entre em contato através do e-mail: <a href="mailto:studioodonto.goiania@gmail.com">studioodonto.goiania@gmail.com</a>.</p>
+      </section>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .policy-page {
+    min-height: 100vh;
+    padding: 80px 20px 60px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .policy-container {
+    max-width: 800px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+  }
+
+  .policy-header {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 20px;
+    transition: all 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: #DB9E16;
+    background: rgba(219, 158, 22, 0.1);
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+
+  .last-updated {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .policy-content {
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .policy-content h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+    margin: 32px 0 16px;
+  }
+
+  .policy-content p {
+    margin-bottom: 16px;
+  }
+
+  .policy-content ul {
+    margin-bottom: 24px;
+    padding-left: 20px;
+  }
+
+  .policy-content li {
+    margin-bottom: 8px;
+  }
+
+  .policy-content a {
+    color: #DB9E16;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .policy-content a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .policy-page {
+      padding: 60px 16px 40px;
+    }
+
+    .policy-container {
+      padding: 24px;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    .policy-content {
+      font-size: 15px;
+    }
+  }
+</style>

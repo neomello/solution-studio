@@ -20,6 +20,7 @@ const iconMap: Record<string, string> = {
   'whatsapp comercial': 'whatsapp',
   'e-mail corporativo': 'mail',
   'instagram': 'instagram',
+  'facebook': 'facebook',
   'linkedin': 'linkedin',
 };
 
@@ -54,6 +55,11 @@ const icon = iconMap[iconKey] ?? 'arrow-right';
         <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
         <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
         <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+      </svg>
+    )}
+    {icon === 'facebook' && (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
       </svg>
     )}
     {icon === 'linkedin' && (
@@ -121,10 +127,10 @@ const icon = iconMap[iconKey] ?? 'arrow-right';
   }
 
   .access-card:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: rgba(55, 41, 190, 0.5);
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(219, 158, 22, 0.5);
     transform: translateY(-2px);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(55, 41, 190, 0.2);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08), 0 0 0 1px rgba(219, 158, 22, 0.2);
   }
 
   .access-card:active {
@@ -138,9 +144,9 @@ const icon = iconMap[iconKey] ?? 'arrow-right';
     width: 44px;
     height: 44px;
     border-radius: 14px;
-    background: rgba(55, 41, 190, 0.15);
-    border: 1px solid rgba(55, 41, 190, 0.25);
-    color: rgba(255, 255, 255, 0.6);
+    background: rgba(219, 158, 22, 0.15);
+    border: 1px solid rgba(219, 158, 22, 0.25);
+    color: rgba(0, 0, 0, 0.7);
     flex-shrink: 0;
     transition:
       color 220ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -149,9 +155,9 @@ const icon = iconMap[iconKey] ?? 'arrow-right';
   }
 
   .access-card:hover .card-icon {
-    color: #02B8F9;
-    background: rgba(2, 184, 249, 0.1);
-    border-color: rgba(2, 184, 249, 0.3);
+    color: #DB9E16;
+    background: rgba(219, 158, 22, 0.1);
+    border-color: rgba(219, 158, 22, 0.3);
     transform: translateX(2px);
   }
 
@@ -166,7 +172,7 @@ const icon = iconMap[iconKey] ?? 'arrow-right';
   .card-label {
     font-size: 15px;
     font-weight: 600;
-    color: rgba(244, 247, 251, 0.9);
+    color: rgba(0, 0, 0, 0.9);
     letter-spacing: -0.01em;
     white-space: nowrap;
     overflow: hidden;
@@ -176,7 +182,7 @@ const icon = iconMap[iconKey] ?? 'arrow-right';
   .card-description {
     font-size: 13px;
     font-weight: 400;
-    color: rgba(244, 247, 251, 0.55);
+    color: rgba(0, 0, 0, 0.55);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -184,7 +190,7 @@ const icon = iconMap[iconKey] ?? 'arrow-right';
   }
 
   .card-arrow {
-    color: rgba(244, 247, 251, 0.2);
+    color: rgba(0, 0, 0, 0.2);
     flex-shrink: 0;
     transition:
       color 220ms cubic-bezier(0.22, 1, 0.36, 1),
@@ -192,7 +198,7 @@ const icon = iconMap[iconKey] ?? 'arrow-right';
   }
 
   .access-card:hover .card-arrow {
-    color: rgba(2, 184, 249, 0.6);
+    color: rgba(219, 158, 22, 0.6);
     transform: translateX(3px);
   }
 

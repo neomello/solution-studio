@@ -1,22 +1,22 @@
 :root {
-  /* Colors — paleta oficial TC Partners */
-  --color-bg: #000522;
-  --color-indigo: #3729BE;
-  --color-indigo-alt: #382DB8;
-  --color-cyan: #02B8F9;
-  --color-navy: #001674;
-  --color-white: #FFFFFF;
-  --color-glass-border: rgba(255, 255, 255, 0.08);
-  --color-glass-surface: rgba(255, 255, 255, 0.04);
+  /* Colors — paleta oficial Studio Odonto */
+  --color-bg: #F7F5F0;
+  --color-indigo: #DB9E16; /* reusing variable name temporarily, mapped to Gold */
+  --color-indigo-alt: #C38A12;
+  --color-cyan: #DB9E16; /* replacing cyan with gold for glows */
+  --color-navy: #EBE7DF;
+  --color-white: #000000; /* Inverting white to black for the light theme */
+  --color-glass-border: rgba(219, 158, 22, 0.2);
+  --color-glass-surface: rgba(255, 255, 255, 0.7);
 
   /* Gradients */
-  --gradient-bg: linear-gradient(160deg, #0A0726 0%, #000522 55%, #050218 100%);
-  --gradient-symbol: radial-gradient(circle at 30% 20%, #02B8F9 0%, #2A1FC0 35%, #001674 70%, #000522 100%);
-  --gradient-glow: radial-gradient(ellipse at top, rgba(55, 41, 190, 0.25) 0%, transparent 60%);
+  --gradient-bg: linear-gradient(160deg, #FFFFFF 0%, #F7F5F0 55%, #EBE7DF 100%);
+  --gradient-symbol: radial-gradient(circle at 30% 20%, #DB9E16 0%, #B8820F 35%, #000000 100%);
+  --gradient-glow: radial-gradient(ellipse at top, rgba(219, 158, 22, 0.15) 0%, transparent 60%);
 
   /* Shadows */
-  --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 30px rgba(2, 184, 249, 0.2);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.05);
+  --shadow-glow: 0 0 30px rgba(219, 158, 22, 0.15);
 
   /* Typography */
   --font-primary: 'Inter', sans-serif;

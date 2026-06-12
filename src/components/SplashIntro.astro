@@ -1,71 +1,19 @@
 ---
-const symbolPath = "M2098.836,1645.814c-105.719,309.819 -320.04,569.82 -595.999,734.761l0,-441.089c0,-162.653 -131.866,-294.519 -294.519,-294.519l-245.861,0c-157.449,0 -285.114,-127.665 -285.114,-285.145l0,-696.763c74.806,53.549 241.378,83.364 325.369,83.364l500.124,0l0,-734.73c274.768,164.221 488.462,422.685 594.619,730.78c2.038,1.473 3.511,2.508 5.549,3.95l732.849,0.032c3.511,0 5.706,-2.822 5.706,-6.302c0,-408.765 -331.389,-740.154 -740.154,-740.154l-597.19,0c-0.784,0 -0.753,0.878 -1.38,1.097l0,-1.097l-275.394,0c-589.634,0 -1116.376,413.593 -1211.121,995.609c-121.833,748.274 454.884,1395.815 1179.393,1395.815l307.122,0l0,-0.251c0.627,0.219 0.596,1.097 1.38,1.097l597.127,0c408.953,0 740.53,-331.702 740.217,-740.75c0,-3.104 -2.571,-5.706 -5.706,-5.706l-737.019,0Z";
+import { Image } from 'astro:assets';
 const splashVersion = Date.now().toString(36);
 ---
 
-<div class="splash" id="splash" data-splash-version={splashVersion} role="presentation" aria-label="Carregando TC Partners">
+<div class="splash" id="splash" data-splash-version={splashVersion} role="presentation" aria-label="Carregando Studio Odonto">
 
   <div class="splash-scene">
-    <!-- SVG inline para stroke-draw -->
-    <svg
-      class="symbol-svg"
-      viewBox="0 0 2842 2393"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <defs>
-        <filter id="splash-glow" x="-30%" y="-30%" width="160%" height="160%">
-          <feGaussianBlur stdDeviation="60" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-        <filter id="cyan-glow" x="-40%" y="-40%" width="180%" height="180%">
-          <feFlood flood-color="#02B8F9" flood-opacity="1" result="color"/>
-          <feComposite in="color" in2="SourceGraphic" operator="in" result="coloredGlow"/>
-          <feGaussianBlur in="coloredGlow" stdDeviation="50" result="blur"/>
-          <feMerge>
-            <feMergeNode in="blur"/>
-            <feMergeNode in="SourceGraphic"/>
-          </feMerge>
-        </filter>
-      </defs>
-
-      <!-- 1. Stroke draw — contorno sendo desenhado -->
-      <path
-        id="symbol-stroke"
-        d={symbolPath}
-        fill="none"
-        stroke="rgba(255,255,255,0.9)"
-        stroke-width="28"
-        stroke-linejoin="round"
-        fill-rule="evenodd"
-      />
-
-      <!-- 2. Glow sweep — brilho azul passando -->
-      <path
-        id="symbol-glow-sweep"
-        d={symbolPath}
-        fill="none"
-        stroke="#02B8F9"
-        stroke-width="60"
-        stroke-linejoin="round"
-        fill-rule="evenodd"
-        filter="url(#cyan-glow)"
-        opacity="0"
-      />
-
-      <!-- 3. Fill — símbolo preenchido (navio no negativo) -->
-      <path
-        id="symbol-fill"
-        d={symbolPath}
-        fill="white"
-        fill-rule="evenodd"
-        opacity="0"
-      />
-    </svg>
-
+    <Image
+      src="/logo_horiz.svg"
+      alt="Studio Odonto Logo"
+      class="splash-logo"
+      width="434"
+      height="145"
+      priority
+    />
   </div>
 
 </div>
@@ -74,7 +22,7 @@ const splashVersion = Date.now().toString(36);
   (function () {
     const splash = document.getElementById('splash');
     if (!splash) return;
-    const splashKey = `tc_splash_seen:${splash.dataset.splashVersion || 'static'}`;
+    const splashKey = `so_splash_seen:${splash.dataset.splashVersion || 'static'}`;
 
     function hasSeenSplash() {
       try {
@@ -88,41 +36,13 @@ const splashVersion = Date.now().toString(36);
       try {
         sessionStorage.setItem(splashKey, '1');
       } catch {
-        // Sessões sem storage ainda devem conseguir sair da splash.
+        // Ignorar se o storage não estiver disponível
       }
     }
 
-    // Roda 1x por sessão para cada build publicado.
     if (hasSeenSplash()) {
       splash.remove();
       return;
-    }
-
-    const stroke     = document.getElementById('symbol-stroke');
-    const glowSweep  = document.getElementById('symbol-glow-sweep');
-    const fill       = document.getElementById('symbol-fill');
-
-    // Calcula comprimento do path para stroke-dasharray
-    const len = stroke.getTotalLength();
-    stroke.style.strokeDasharray  = len;
-    stroke.style.strokeDashoffset = len;
-    glowSweep.style.strokeDasharray  = len * 0.12; // janela de brilho
-    glowSweep.style.strokeDashoffset = len;
-
-    function ease(t) {
-      // cubic-bezier(0.22, 1, 0.36, 1) aproximado
-      return 1 - Math.pow(1 - t, 3);
-    }
-
-    function animate(duration, fn, onDone) {
-      const start = performance.now();
-      function frame(now) {
-        const t = Math.min((now - start) / duration, 1);
-        fn(ease(t));
-        if (t < 1) requestAnimationFrame(frame);
-        else if (onDone) onDone();
-      }
-      requestAnimationFrame(frame);
     }
 
     function dismiss() {
@@ -131,23 +51,8 @@ const splashVersion = Date.now().toString(36);
       setTimeout(() => splash.remove(), 600);
     }
 
-    // Sequência de animação
-    // 1. Draw stroke (1000ms)
-    animate(1000, (t) => {
-      stroke.style.strokeDashoffset = len * (1 - t);
-      glowSweep.style.strokeDashoffset = len * (1 - t) + len * 0.08;
-      glowSweep.style.opacity = String(t * 0.8);
-    }, () => {
-      // 2. Glow passa e símbolo preenche (600ms)
-      animate(600, (t) => {
-        glowSweep.style.opacity = String((1 - t) * 0.8);
-        fill.style.opacity = String(t);
-        stroke.style.opacity = String(1 - t * 0.6);
-      }, () => {
-        // 3. Aguarda e dispensa
-        setTimeout(dismiss, 1000);
-      });
-    });
+    // Aguarda um momento para mostrar a logo e então remove a splash
+    setTimeout(dismiss, 1800);
 
     // Skippável
     splash.addEventListener('click', dismiss, { once: true });
@@ -160,7 +65,7 @@ const splashVersion = Date.now().toString(36);
     position: fixed;
     inset: 0;
     z-index: 200;
-    background: #000522;
+    background: #F7F5F0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -178,17 +83,26 @@ const splashVersion = Date.now().toString(36);
     flex-direction: column;
     align-items: center;
     gap: 28px;
+    animation: fadeScaleIn 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
-  .symbol-svg {
-    width: 88px;
-    height: 74px;
-    overflow: visible;
+  .splash-logo {
+    width: min(80vw, 300px);
+    height: auto;
+    object-fit: contain;
   }
 
-  #symbol-stroke,
-  #symbol-glow-sweep {
-    stroke-linecap: round;
+  @keyframes fadeScaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+      filter: blur(8px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+      filter: blur(0);
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -1,153 +1,65 @@
-# DESIGN TOKENS — TC PARTNERS
+# DESIGN TOKENS — STUDIO ODONTO
 
-> Paleta amostrada do manual oficial (Apresentacao_TC_Partners_Final.pdf).
-> Valores anteriores (#0A2342, #050816, #43449C) eram incorretos — substituídos.
+> Paleta ajustada para a identidade visual oficial do Studio Odonto (Solution Odonto).
 > Esta é a fonte de verdade. Manter sincronizado com `src/styles/tokens.css`.
 
 ---
 
 ## PALETA OFICIAL
 
-### Indigo — cor-mãe
+### Ouro — cor-mãe (Accent)
 
-Identidade central da marca. Usado em ativo, fundo chapado, cards.
+Identidade central da marca, traz sofisticação e destaque aos elementos interativos.
 
-```
-HEX: #3729BE
-Variante: #382DB8
+```hex
+HEX: #DB9E16
 ```
 
 Uso:
-
-- fundo do símbolo e bg
-- superfícies de cards
+- textos em destaque
+- bordas e linhas
 - estados ativos
 - botões primários
 
 ---
 
-### Azul Elétrico — accent / glow
+### Fundo (Background) — Clean/Clínico
 
-Accent de energia. Usado com moderação extrema.
+Tom bege claro muito suave, transmitindo higiene, limpeza e sofisticação leve.
 
 ```hex
-HEX: #02B8F9
+HEX: #F7F5F0
 ```
 
 Uso:
-
-- glow do símbolo
-- cursor piscante
-- dot de status ativo
-- hover de ícone
-- rotas SVG de fundo
-- relógio Itajaí
-
-Nunca usar como fundo sólido. Nunca exagerar.
+- fundo da página e da aplicação web
 
 ---
 
-### Azul Profundo — corpo do gradiente
+### Preto — Textos principais
+
+Para garantir alto contraste sobre o fundo claro.
 
 ```hex
-HEX: #001674
+HEX: #000000
 ```
 
 Uso:
-
-- meio do gradiente radial do símbolo
-- áreas de profundidade
-
----
-
-### Fundo — quase-preto azulado
-
-Base de toda a experiência. Splash screen.
-
-```hex
-HEX: #000522
-```
+- tipografia primária
+- títulos
+- ícones sólidos
 
 ---
 
-### Branco — símbolo, wordmark, texto
+### Superfícies e Cards (Glass / Sólido)
 
-```
-HEX: #FFFFFF
-```
-
-Uso:
-
-- símbolo TC (no fundo escuro)
-- wordmark
-- nuvens
-- headlines
-- ícones
-- texto principal
-
----
-
-### Glass Border
-
-Bordas de cards e badges.
-
-```
-RGBA: rgba(255, 255, 255, 0.08)
-```
-
----
-
-### Glass Surface
-
-Superfície translúcida dos cards.
-
-```hex
-RGBA: rgba(255, 255, 255, 0.04)
-Backdrop blur: 20px
-```
-
----
-
-## GRADIENT SYSTEM
-
-### Background institucional (página)
+No tema claro, os cards podem ser brancos ou possuírem um leve tom translúcido sobre o bege `#F7F5F0`.
 
 ```css
-linear-gradient(160deg, #0A0726 0%, #000522 55%, #050218 100%)
+Superfície: #FFFFFF
+Borda: rgba(219, 158, 22, 0.2) /* Ouro com opacidade */
+Sombra: 0 4px 20px rgba(0, 0, 0, 0.05)
 ```
-
-Com glow índigo sutil no topo:
-
-```css
-radial-gradient(ellipse at top, rgba(55, 41, 190, 0.22) 0%, rgba(2, 184, 249, 0.06) 40%, transparent 70%)
-```
-
----
-
-### Gradiente assinatura (símbolo / hero)
-
-```css
-radial-gradient(circle at 30% 20%,
-  #02B8F9 0%, #2A1FC0 35%, #001674 70%, #000522 100%)
-```
-
----
-
-## SHADOW SYSTEM
-
-### Card Shadow
-
-```hex
-0 10px 40px rgba(0, 0, 0, 0.4)
-```
-
-### Glow Shadow (símbolo)
-
-```hex
-0 0 30px rgba(2, 184, 249, 0.2)
-```
-
-Nunca exagerar glow.
 
 ---
 
@@ -172,17 +84,6 @@ Letter spacing: -0.03em → -0.04em
 ```
 Weight: 400 → 500
 Line height: 150%
-```
-
-### Assinatura de marca
-
-O underscore final `_` é detalhe de identidade obrigatório.
-Implementar como cursor piscando em `#02B8F9` nas frases-assinatura:
-
-```
-tc partners_
-assessoria em importação e exportação_
-Parceiros para ir além das fronteiras_
 ```
 
 ---
@@ -251,18 +152,8 @@ env(safe-area-inset-right)
 
 | Arquivo                    | Status              | Uso                       |
 |----------------------------|---------------------|---------------------------|
-| logos/tc-symbol.svg        | OK — branco #fff    | splash, header, favicon   |
-| logos/tc-symbol_indigo.svg | OK — #3729be        | fundo claro (futuro)      |
-| logos/tc-logo.svg          | OK — branco #fff    | splash wordmark           |
-| logos/tc-logo_indigo.svg   | OK — #3729be        | fundo claro (futuro)      |
-| favicon.svg (atual)        | SUBSTITUIR          | cor errada #43449c, 2.1MB |
-
-Regras:
-
-- Sempre usar SVG para logo e símbolo
-- `logo_indigo.png` — não usar (glifos ç/p quebrados)
-- `metallic.png` — não usar (skeuomórfico, fora da identidade)
-- Regenerar favicon do símbolo vetorial com `#3729BE`
+| logo_horiz.svg             | OK                  | splash, header, etc       |
+| logos/logo.png             | OK                  | metadados, fallback       |
 
 ---
 
@@ -270,15 +161,12 @@ Regras:
 
 O visual deve parecer:
 
-- software premium internacional
-- portal institucional sólido
-- experiência Apple-like / nativa no iPhone
-- elegante sem exagero
+- clean e clínico, porém premium
+- focado em saúde e estética dental
+- elegante e claro
 
 Nunca:
 
-- cyberpunk
-- web3 genérico
-- startup neon exagerado
-- template corporativo antigo
+- escuro pesado (dark mode agressivo)
+- corporativo de tecnologia
 - "site em construção"

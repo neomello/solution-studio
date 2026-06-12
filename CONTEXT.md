@@ -1,50 +1,49 @@
-# TC Partners Official Hub - Contexto Local
+# Studio Odonto Official Hub - Contexto Local
 
-## O que este projeto e
+## O que este projeto é
 
-O TC Partners Official Hub e a camada zero da presenca digital oficial da TC Partners.
-Ele centraliza canais oficiais em uma experiencia mobile-first, leve, instalavel como PWA e preparada para evoluir para aquisicao de trafego pago.
+O Studio Odonto Official Hub é a camada zero da presença digital oficial do Studio Odonto (também referenciado como Solution Odonto).
+Ele centraliza canais oficiais em uma experiência mobile-first, leve, instalável como PWA e preparada para evoluir para aquisição de tráfego pago.
 
-Este projeto nao e o sistema completo da TC Partners.
-Ele e um no frontend nao soberano.
+Este projeto não é o sistema completo da clínica.
+Ele é um nó frontend não soberano.
 
 ## Papel no ecossistema
 
-O frontend entrega acesso, medicao e experiencia.
-Autoridade de negocio, CRM, ledger, automacoes e decisoes comerciais futuras devem viver em servicos proprios, expostos por contratos.
+O frontend entrega acesso, medição e experiência.
+Autoridade de negócio, CRM, ledger, automações e decisões comerciais futuras devem viver em serviços próprios, expostos por contratos.
 
 Regra local:
 
-- frontend nao decide estado comercial
-- frontend nao guarda segredos
-- frontend nao duplica CRM
-- frontend emite eventos e preserva parametros de origem
-- backend ou servicos externos devem deter autoridade operacional
+- frontend não decide estado comercial
+- frontend não guarda segredos
+- frontend não duplica CRM
+- frontend emite eventos e preserva parâmetros de origem
+- backend ou serviços externos devem deter autoridade operacional
 
-## Contrato atual de presenca
+## Contrato atual de presença
 
-- Nome de marca: TC Partners
-- Razao social: TC Importacao e Exportacao LTDA
-- CNPJ: 24.825.654/0001-12
-- Base: Itajai, Santa Catarina, Brasil
-- Assinatura: `Parceiros para ir alem das fronteiras_`
-- Dominio SEO/JSON-LD vigente: `https://tcpartners.com.br`
+- Nome de marca: Studio Odonto (Solution Odonto)
+- Endereço: Rua T-36, Setor Bueno, Goiânia - GO, 74230-105
+- Assinatura: (A definir, sem tagline atual)
+- Domínio SEO/JSON-LD vigente: `https://studioodonto.xyz`
 - Deploy oficial: cPanel
 
 ## Canais oficiais
 
 Confirmado:
 
-- LinkedIn: `https://www.linkedin.com/company/tc-partners-importacoes`
-- WhatsApp: `+55 47 99205-1159`
-- Instagram: `https://www.instagram.com/tcpartnerscomex`
-- E-mail: `candido@tcpartners.com.br`
-- Facebook: `https://www.facebook.com/profile.php?id=61590785032838`
+- WhatsApp: `+55 62 99358-8139`
+- Instagram: `https://www.instagram.com/solutionodonto/`
+- E-mail: `studioodonto.goiania@gmail.com`
+- Facebook: `Studio Odonto` (Página comercial, ID: 708178602387338)
 
-Observacao:
+Observação:
 
-- Facebook entra como canal social oficial em SEO/JSON-LD, sem obrigacao de card ou botao na interface v1.
-- A logo exibida no topo deve consumir `public/logos/tc-logo.svg`.
+- LinkedIn não será utilizado.
+- Facebook entra como canal social oficial em SEO/JSON-LD, e como fonte primária para a C-API/Pixel Meta.
+- A logo exibida no topo deve consumir `public/logo_horiz.svg` e `public/logos/logo.png`.
+- Metadados do Meta (C-API, WhatsApp App) estão documentados em `docs/META-config.md`.
 
 ## Branding
 
@@ -52,15 +51,15 @@ Fonte local de verdade: `BRANDING.md`.
 
 Paleta aprovada:
 
-- Indigo: `#3729BE`
-- Azul eletrico: `#02B8F9`
-- Fundo quase-preto azulado: `#000522`
+- Fundo (Clean): `#F7F5F0`
+- Ouro (Accent): `#DB9E16`
+- Fonte (Textos): `#000000`
 
-Favicon local de referencia:
+Favicon local de referência:
 
-- `public/favicon.svg`
+- `public/favicon.svg` (A ser adaptado para a nova marca)
 
-## Evolucao planejada
+## Evolução planejada
 
 v1:
 
@@ -72,21 +71,11 @@ v1:
 
 v2/v3:
 
-- trafego pago
+- tráfego pago
 - Google Analytics
-- Meta Pixel
-- UTMs avancadas
+- Meta Pixel e Conversions API
+- UTMs avançadas
 - Meta for Developers
-- CRM
-- formulario de captacao
+- Formulário de captação
 
-Essas evolucoes devem ser desenhadas por contrato antes de codigo.
-
-## Divergencias documentais conhecidas
-
-`docs/main-plan.md` contem referencias legadas a Cloudflare Pages, Vercel e PostHog.
-A direcao vigente informada para este no e:
-
-- cPanel como deploy oficial
-- PNPM como package manager oficial
-- Google Analytics e Meta Pixel como integracoes futuras
+Essas evoluções devem ser desenhadas por contrato antes de código.

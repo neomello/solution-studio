@@ -5,40 +5,38 @@ export interface Props {
 }
 
 const {
-  title = 'TC Partners · Assessoria em Importação e Exportação',
-  description = 'Portal oficial da TC Partners. Assessoria estratégica em importação e exportação a partir de Itajaí, Santa Catarina, Brasil. Parceiros para ir além das fronteiras.',
+  title = 'Studio Odonto · Solution Odonto',
+  description = 'Portal oficial do Studio Odonto. Excelência em saúde e estética dental em Goiânia, GO.',
 } = Astro.props;
 
-const siteUrl = 'https://tcpartners.com.br';
+const siteUrl = 'https://studioodonto.xyz';
 const ogImage = `${siteUrl}/og/og-image.png`;
 
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "TC Partners",
-  "legalName": "TC Importação e Exportação LTDA",
+  "name": "Studio Odonto",
+  "legalName": "Studio Odonto",
   "url": siteUrl,
   "logo": {
     "@type": "ImageObject",
-    "url": `${siteUrl}/logos/tc-symbol.svg`
+    "url": `${siteUrl}/logos/logo.png`
   },
-  "foundingDate": "2016-05-17",
-  "email": "candido@tcpartners.com.br",
-  "telephone": "+55 47 99205-1159",
+  "email": "studioodonto.goiania@gmail.com",
+  "telephone": "+55 62 99358-8139",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "Rua Lauro Muller, 950, Sala 01 Box 271",
-    "addressLocality": "Itajaí",
-    "addressRegion": "SC",
-    "postalCode": "88301-401",
+    "streetAddress": "Rua T-36, Setor Bueno",
+    "addressLocality": "Goiânia",
+    "addressRegion": "GO",
+    "postalCode": "74230-105",
     "addressCountry": "BR"
   },
   "areaServed": "BR",
-  "description": "Assessoria em Importação e Exportação. Parceiros para ir além das fronteiras.",
+  "description": "Clínica odontológica no Setor Bueno, em Goiânia, especializada em estética dental, facetas de resina de alta qualidade e tratamentos para renovar a harmonia do sorriso.",
   "sameAs": [
-    "https://www.instagram.com/tcpartnerscomex",
-    "https://www.linkedin.com/company/tc-partners-importacoes",
-    "https://www.facebook.com/profile.php?id=61590785032838"
+    "https://www.instagram.com/solutionodonto/",
+    "https://www.facebook.com/profile.php?id=708178602387338"
   ]
 });
 ---
@@ -48,9 +46,9 @@ const jsonLd = JSON.stringify({
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#000522" />
+    <meta name="theme-color" content="#F7F5F0" />
     <meta name="description" content={description} />
-    <meta name="keywords" content="importação, exportação, comex, assessoria, comércio exterior, Itajaí, Santa Catarina, TC Partners" />
+    <meta name="keywords" content="odontologia, dentista, goiânia, studio odonto, solution odonto, estética dental, saúde bucal" />
     <meta name="robots" content="index, follow" />
 
     <title>{title}</title>
@@ -66,16 +64,16 @@ const jsonLd = JSON.stringify({
     <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="TC Partners — Assessoria em Importação e Exportação" />
+    <meta property="og:image:alt" content="Studio Odonto — Saúde e Estética Dental" />
     <meta property="og:locale" content="pt_BR" />
-    <meta property="og:site_name" content="TC Partners" />
+    <meta property="og:site_name" content="Studio Odonto" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content="TC Partners — Assessoria em Importação e Exportação" />
+    <meta name="twitter:image:alt" content="Studio Odonto — Saúde e Estética Dental" />
 
     <!-- Favicon -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -85,8 +83,9 @@ const jsonLd = JSON.stringify({
 
     <!-- iOS PWA -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="TC Partners" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Studio Odonto" />
 
     <!-- iOS Splash Screens -->
     <link rel="apple-touch-startup-image" media="screen and (device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3)" href="/splash/iPhone_16__iPhone_15_Pro__iPhone_15__iPhone_14_Pro_portrait.png" />
@@ -104,7 +103,7 @@ const jsonLd = JSON.stringify({
     <!-- JSON-LD -->
     <script type="application/ld+json" set:html={jsonLd} />
 
-    <!-- Fonts — preconnect + non-render-blocking -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

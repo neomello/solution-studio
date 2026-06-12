@@ -1,0 +1,154 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Termos de Uso — Studio Odonto"
+  description="Termos de Uso do Portal Oficial do Studio Odonto."
+>
+  <main class="policy-page">
+    <div class="policy-container fade-in">
+      <header class="policy-header">
+        <a href="/" class="back-link">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m15 18-6-6 6-6"/>
+          </svg>
+          Voltar ao Hub
+        </a>
+        <h1>Termos de Uso</h1>
+        <p class="last-updated">Última atualização: Junho de 2026</p>
+      </header>
+
+      <section class="policy-content">
+        <h2>1. Aceitação dos Termos</h2>
+        <p>Ao acessar e utilizar o portal e os canais de atendimento da <strong>Studio Odonto (Solution Odonto)</strong>, você concorda expressamente com as condições estipuladas nestes Termos de Uso. Caso não concorde com qualquer parte destes termos, solicitamos que não utilize nossos serviços digitais.</p>
+
+        <h2>2. Uso do Portal</h2>
+        <p>Este portal tem como objetivo principal centralizar o acesso aos nossos canais de atendimento oficiais (WhatsApp, E-mail, Redes Sociais) e facilitar o agendamento de consultas e contato com a equipe da clínica.</p>
+        <p>O usuário se compromete a fornecer informações verdadeiras e exatas ao interagir com nossos canais de contato.</p>
+
+        <h2>3. Agendamentos e Consultas</h2>
+        <p>Os contatos iniciados através deste portal não garantem o agendamento imediato. Todas as marcações estão sujeitas à disponibilidade de agenda dos profissionais da clínica. A confirmação oficial do agendamento será sempre realizada por nossa equipe de atendimento via WhatsApp ou telefone.</p>
+
+        <h2>4. Propriedade Intelectual</h2>
+        <p>Todo o conteúdo presente neste portal (logotipos, textos, ícones, imagens e design) é de propriedade exclusiva da Studio Odonto. É expressamente proibida a reprodução, cópia ou distribuição de qualquer material sem autorização prévia por escrito.</p>
+
+        <h2>5. Isenção de Responsabilidade Médica</h2>
+        <p>As informações disponíveis neste portal ou em nossas redes sociais possuem caráter estritamente informativo e não substituem uma avaliação ou consulta odontológica presencial. Tratamentos e diagnósticos só podem ser estabelecidos por um cirurgião-dentista qualificado após avaliação clínica.</p>
+
+        <h2>6. Links Externos</h2>
+        <p>Nosso portal contém links para plataformas de terceiros (como Instagram, Facebook e WhatsApp). Não nos responsabilizamos pelas políticas de privacidade, termos de uso ou conteúdos dessas plataformas. O uso de tais redes é regido pelas diretrizes de suas respectivas empresas.</p>
+
+        <h2>7. Modificações dos Termos</h2>
+        <p>A Studio Odonto reserva-se o direito de alterar estes Termos de Uso e a Política de Privacidade a qualquer momento, visando aprimorar nossos serviços e nos adequar à legislação vigente. Alterações significativas serão atualizadas nesta mesma página.</p>
+
+        <h2>8. Contato e Foro</h2>
+        <p>Para dúvidas referentes a estes Termos, o contato deve ser feito através do e-mail oficial. Fica eleito o foro da comarca de Goiânia - GO para dirimir quaisquer questões decorrentes da utilização deste portal.</p>
+      </section>
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .policy-page {
+    min-height: 100vh;
+    padding: 80px 20px 60px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .policy-container {
+    max-width: 800px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 24px;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    padding: 40px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04);
+  }
+
+  .policy-header {
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(0, 0, 0, 0.6);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 20px;
+    transition: all 0.2s ease;
+  }
+
+  .back-link:hover {
+    color: #DB9E16;
+    background: rgba(219, 158, 22, 0.1);
+  }
+
+  h1 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #000000;
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+
+  .last-updated {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+
+  .policy-content {
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .policy-content h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+    margin: 32px 0 16px;
+  }
+
+  .policy-content p {
+    margin-bottom: 16px;
+  }
+
+  .policy-content a {
+    color: #DB9E16;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .policy-content a:hover {
+    text-decoration: underline;
+  }
+
+  @media (max-width: 768px) {
+    .policy-page {
+      padding: 60px 16px 40px;
+    }
+
+    .policy-container {
+      padding: 24px;
+    }
+
+    h1 {
+      font-size: 24px;
+    }
+
+    .policy-content {
+      font-size: 15px;
+    }
+  }
+</style>

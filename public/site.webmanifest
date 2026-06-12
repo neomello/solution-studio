@@ -1,16 +1,16 @@
 {
-  "name": "TC Partners",
-  "short_name": "TC Partners",
-  "description": "Portal oficial da TC Partners — assessoria em importação e exportação.",
+  "name": "Studio Odonto",
+  "short_name": "StOdonto",
+  "description": "Portal oficial do Studio Odonto — saúde e estética dental.",
   "lang": "pt-BR",
-  "id": "https://tcpartners.com.br/",
+  "id": "/?source=pwa",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#000522",
-  "theme_color": "#3729BE",
-  "categories": ["business", "productivity"],
+  "background_color": "#F7F5F0",
+  "theme_color": "#DB9E16",
+  "categories": ["business", "health"],
   "icons": [
     {
       "src": "/favicon-96x96.png?v=1.1.0",

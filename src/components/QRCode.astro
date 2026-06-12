@@ -1,14 +1,14 @@
 ---
 import QRCode from 'qrcode';
 
-const url = 'https://tcpartners.com.br';
+const url = 'https://studioodonto.xyz/';
 
 const svgString = await QRCode.toString(url, {
   type: 'svg',
   width: 120,
   margin: 1,
   color: {
-    dark: '#FFFFFF',
+    dark: '#000000',
     light: '#00000000', // transparente
   },
   errorCorrectionLevel: 'M',
@@ -41,8 +41,8 @@ const svgString = await QRCode.toString(url, {
     align-items: center;
     gap: 10px;
     padding: 16px;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(219, 158, 22, 0.2);
     border-radius: 20px;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -54,7 +54,7 @@ const svgString = await QRCode.toString(url, {
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0.75;
+    opacity: 0.85;
   }
 
   .qr-image :global(svg) {
@@ -65,8 +65,8 @@ const svgString = await QRCode.toString(url, {
 
   .qr-label {
     font-size: 11px;
-    font-weight: 400;
-    color: rgba(255, 255, 255, 0.3);
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
     letter-spacing: 0.04em;
     text-transform: uppercase;
   }

@@ -12,10 +12,11 @@
   "dependencies": {
     "@lucide/astro": "^1.16.0",
     "@vite-pwa/astro": "^1.2.0",
-    "astro": "^6.4.2",
+    "astro": "^6.4.6",
     "qrcode": "^1.5.4"
   },
   "devDependencies": {
+    "@vite-pwa/assets-generator": "^1.0.2",
     "sharp": "^0.34.5",
     "vite": "^7"
   },

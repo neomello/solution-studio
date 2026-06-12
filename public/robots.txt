@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Allow: /politica-de-privacidade
+Allow: /termos-de-uso
 
-Sitemap: https://tcpartners.com.br/sitemap.xml
+Sitemap: https://studioodonto.xyz/sitemap.xml

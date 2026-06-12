@@ -1,24 +1,24 @@
-# TC Partners Official Hub - Agent Instructions
+# Studio Odonto Official Hub - Agent Instructions
 
-Este arquivo define as regras locais para agentes atuando neste no.
+Este arquivo define as regras locais para agentes atuando neste nó.
 
-## Identidade do no
+## Identidade do nó
 
-- Projeto: TC Partners Official Hub
-- Papel: camada zero da presenca digital oficial da TC Partners
+- Projeto: Studio Odonto Official Hub
+- Papel: camada zero da presença digital oficial da Studio Odonto (Solution Odonto)
 - Stack: Astro, TypeScript, PWA
 - Package manager oficial: PNPM
 - Deploy oficial: cPanel
-- Dominio SEO/JSON-LD vigente: `https://tcpartners.com.br`
+- Domínio SEO/JSON-LD vigente: `https://studioodonto.xyz`
 
 ## Fronteira local
 
-Este diretorio nao consome um `pnpm-workspace.yaml` ou instrucoes de agente em pasta pai imediata.
-Por PNPM, este pacote tambem pode ser capturado pelo workspace superior em `/Users/nettomello/CODIGOS`.
-Para normalizar somente este no, usar `pnpm install --ignore-workspace`.
+Este diretório não consome um `pnpm-workspace.yaml` ou instruções de agente em pasta pai imediata.
+Por PNPM, este pacote também pode ser capturado pelo workspace superior em `/Users/nettomello/CODIGOS`.
+Para normalizar somente este nó, usar `pnpm install --ignore-workspace`.
 
-Nos compartilham servicos e contratos. Nos nao compartilham arquivos.
-Nao criar acoplamento por codigo com outros projetos.
+Nós compartilham serviços e contratos. Nós não compartilham arquivos.
+Não criar acoplamento por código com outros projetos.
 
 ## Antes de alterar
 
@@ -32,56 +32,54 @@ Ler, nesta ordem, quando existirem:
 6. `README.md`
 7. `BRANDING.md`
 
-Nao alterar `.env`, credenciais, chaves, tokens, arquivos privados ou configuracoes sensiveis.
-Nao ler nem expor segredos sem autorizacao explicita.
+Não alterar `.env`, credenciais, chaves, tokens, arquivos privados ou configurações sensíveis.
+Não ler nem expor segredos sem autorização explícita.
 
-## Escopo preferencial de mudanca
+## Escopo preferencial de mudança
 
-Priorizar alteracoes pequenas e auditaveis em:
+Priorizar alterações pequenas e auditáveis em:
 
 - responsividade e mobile
-- conteudo dos cards e canais
+- conteúdo dos cards e canais
 - SEO e JSON-LD
 - PWA e manifest
 - performance visual
-- acessibilidade basica
-- consistencia com `BRANDING.md`
+- acessibilidade básica
+- consistência com `BRANDING.md`
 
-Evitar rewrites, novas dependencias e abstracoes futuras sem necessidade real.
+Evitar rewrites, novas dependências e abstrações futuras sem necessidade real.
 
 ## Contratos atuais
 
-- LinkedIn confirmado: `https://www.linkedin.com/company/tc-partners-importacoes`
-- WhatsApp confirmado: `+55 47 99205-1159`
-- Instagram confirmado: `https://www.instagram.com/tcpartnerscomex`
-- E-mail confirmado: `candido@tcpartners.com.br`
-- Facebook confirmado para SEO/JSON-LD: `https://www.facebook.com/profile.php?id=61590785032838`
-- Paleta aprovada: `#3729BE`, `#02B8F9`, `#000522`
-- Favicon atual aprovado como base local: `public/favicon.svg`
-- Logo de topo: `public/logos/tc-logo.svg`
+- WhatsApp confirmado: `+55 62 99358-8139`
+- Instagram confirmado: `https://www.instagram.com/solutionodonto/`
+- E-mail confirmado: `studioodonto.goiania@gmail.com`
+- Facebook confirmado para SEO/JSON-LD: `Studio Odonto` (ID: `708178602387338`)
+- Paleta aprovada: Fundo `#F7F5F0`, Ouro `#DB9E16`, Texto `#000000`
+- Configurações Meta detalhadas em: `docs/META-config.md`
+- Logo principal: `public/logo_horiz.svg` e `public/logos/logo.png`
 
-## Integracoes previstas
+## Integrações previstas
 
-Futuras integracoes devem preservar degradacao segura e auditabilidade:
+Futuras integrações devem preservar degradação segura e auditabilidade:
 
 - Google Analytics
-- Meta Pixel
-- recursos avancados de UTM
+- Meta Pixel e Conversions API (C-API)
+- recursos avançados de UTM
 - Meta for Developers
-- CRM
-- formulario de captacao
+- Formulário de captação
 
-Nao implementar integracao externa sem contrato definido e sem caminho de desligamento.
+Não implementar integração externa sem contrato definido e sem caminho de desligamento.
 
-## Validacao
+## Validação
 
-Para mudancas JS/TS/Astro, rodar:
+Para mudanças JS/TS/Astro, rodar:
 
 ```bash
 pnpm run build
 ```
 
-Quando houver mudanca visual relevante, tambem rodar:
+Quando houver mudança visual relevante, também rodar:
 
 ```bash
 pnpm run dev

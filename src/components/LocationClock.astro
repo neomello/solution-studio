@@ -7,36 +7,34 @@
       <svg class="location-icon" width="9" height="9" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
       </svg>
-      <span class="status-location">Itajaí · SC · Brasil</span>
+      <span class="status-location">Goiânia · GO · Brasil</span>
     </span>
-
-    <span class="status-coords">−26°54' −48°39'</span>
 
     <span class="status-clock-wrap">
       <svg class="clock-icon" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <circle cx="12" cy="12" r="10"/>
         <polyline points="12 6 12 12 16 14"/>
       </svg>
-      <time class="status-clock" id="itajai-clock" datetime="">--:--</time>
+      <time class="status-clock" id="location-clock" datetime="">--:--</time>
     </span>
   </div>
 </div>
 
 <script>
   (function () {
-    const el = document.getElementById('itajai-clock');
+    const el = document.getElementById('location-clock');
     if (!el) return;
 
     function update() {
       const now = new Date();
-      const itajaiTime = new Intl.DateTimeFormat('pt-BR', {
+      const localTime = new Intl.DateTimeFormat('pt-BR', {
         timeZone: 'America/Sao_Paulo',
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
         hour12: false,
       }).format(now);
-      el.textContent = itajaiTime;
+      el.textContent = localTime;
       el.setAttribute('datetime', now.toISOString());
     }
 
@@ -56,7 +54,7 @@
     align-items: center;
     justify-content: center;
     padding: 10px 16px;
-    background: linear-gradient(180deg, rgba(0, 5, 34, 0.8) 0%, transparent 100%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, transparent 100%);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
   }
@@ -64,27 +62,26 @@
   .status-track {
     width: 100%;
     max-width: 420px;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     gap: 10px;
   }
 
   .status-location,
-  .status-coords,
   .status-clock {
     font-size: 10px;
     font-weight: 400;
     letter-spacing: 0.05em;
     font-variant-numeric: tabular-nums;
-    color: rgba(255, 255, 255, 0.42);
+    color: rgba(0, 0, 0, 0.6);
   }
 
   .status-location-wrap {
     display: flex;
     align-items: center;
     gap: 3px;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(0, 0, 0, 0.5);
     justify-self: start;
     min-width: 0;
   }
@@ -98,7 +95,7 @@
     display: flex;
     align-items: center;
     gap: 3px;
-    color: rgba(2, 184, 249, 0.55);
+    color: rgba(219, 158, 22, 0.8);
     justify-self: end;
   }
 
@@ -111,17 +108,9 @@
     font-feature-settings: 'tnum';
   }
 
-  .status-coords {
-    justify-self: center;
-  }
-
   @media (max-width: 380px) {
-    .status-track {
-      grid-template-columns: 1fr auto;
-    }
-
-    .status-coords {
-      display: none;
+    .status-location-wrap {
+      max-width: 60%;
     }
   }
 
@@ -135,7 +124,6 @@
     }
 
     .status-location,
-    .status-coords,
     .status-clock {
       font-size: 9px;
     }

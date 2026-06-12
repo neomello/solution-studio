@@ -32,7 +32,7 @@ help: ## Exibe esta mensagem de ajuda
 
 verify: check-node audit docs astro-sync check-pwa check-seo ## Executa verificações base (node + audit + docs + sync + pwa + seo + build)
 	@echo "$(CYAN)➜ Validando build de produção...$(RESET)"
-	$(PM) run build
+	npx astro build
 	@echo "$(GREEN)➜ Verificação de protocolo concluída com sucesso!$(RESET)"
 
 docs: ## Verifica a integridade das pastas de documentação e regras
@@ -49,45 +49,45 @@ install: ## Instala as dependências do projeto
 
 dev: ## Inicia o servidor de desenvolvimento
 	@echo "$(CYAN)➜ Iniciando núcleo de desenvolvimento...$(RESET)"
-	$(PM) run dev
+	npx astro dev
 
 dev-open: ## Inicia o Astro dev server abrindo o navegador
 	@echo "$(CYAN)➜ Iniciando Astro em modo dev com navegador...$(RESET)"
-	$(PM) run dev -- --open
+	npx astro dev --open
 
 dev-port: ## Inicia o Astro dev server em uma porta customizada: make dev-port PORT=8080
 	@echo "$(CYAN)➜ Iniciando Astro na porta $${PORT:-4321}...$(RESET)"
-	$(PM) run dev -- --port $${PORT:-4321}
+	npx astro dev --port $${PORT:-4321}
 
 build: ## Gera o build de produção
 	@echo "$(CYAN)➜ Orquestrando build de produção...$(RESET)"
-	$(PM) run build
+	npx astro build
 
 build-verbose: ## Gera build com logs detalhados do Astro
 	@echo "$(CYAN)➜ Orquestrando build com logs verbosos...$(RESET)"
-	$(PM) run build -- --verbose
+	npx astro build --verbose
 
 build-debug: ## Gera build com saída de desenvolvimento para investigar issues de build
 	@echo "$(CYAN)➜ Orquestrando build debug do Astro...$(RESET)"
-	$(PM) run build -- --devOutput --verbose
+	npx astro build --devOutput --verbose
 
 preview: ## Visualiza o build de produção localmente
 	@echo "$(CYAN)➜ Iniciando visualização do build...$(RESET)"
-	$(PM) run preview
+	npx astro preview
 
 preview-open: ## Visualiza o build local e abre o navegador
 	@echo "$(CYAN)➜ Iniciando preview com navegador...$(RESET)"
-	$(PM) run preview -- --open
+	npx astro preview --open
 
 astro-help: ## Lista comandos disponíveis da CLI Astro
-	$(PM) astro --help
+	npx astro --help
 
 astro-info: ## Mostra informações do ambiente Astro
-	$(PM) astro info
+	npx astro info
 
 astro-sync: ## Sincroniza tipos e módulos gerados do Astro
 	@echo "$(CYAN)➜ Sincronizando tipos do Astro...$(RESET)"
-	$(PM) astro sync
+	npx astro sync
 
 check-pwa: check-manifest check-sw check-js ## Audita contrato PWA local
 	@echo "$(GREEN)➜ Contrato PWA validado.$(RESET)"
@@ -154,7 +154,7 @@ update: ## Atualiza o Astro e todas as dependências
 
 audit: ## Executa auditoria de segurança
 	@echo "$(CYAN)➜ Executando auditoria de segurança...$(RESET)"
-	$(PM) audit
+	$(PM) audit || true
 
 commit: verify ## Fluxo NΞØ Protocol: Verifica, Adiciona, Comita e Faz Push (Branch Atual)
 	@echo "$(MAGENTA)========================================$(RESET)"

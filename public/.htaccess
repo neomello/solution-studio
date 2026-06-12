@@ -3,8 +3,8 @@ DirectoryIndex index.html
 RewriteEngine On
 
 RewriteCond %{HTTPS} !=on [OR]
-RewriteCond %{HTTP_HOST} ^www\.tcpartners\.com\.br$ [NC]
-RewriteRule ^ https://tcpartners.com.br%{REQUEST_URI} [L,R=301]
+RewriteCond %{HTTP_HOST} ^www\.studioodonto\.xyz$ [NC]
+RewriteRule ^ https://studioodonto.xyz%{REQUEST_URI} [L,R=301]
 
 <IfModule mod_headers.c>
   <FilesMatch "^(index\.html|sw\.js|registerSW\.js|site\.webmanifest)$">
