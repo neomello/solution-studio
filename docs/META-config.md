@@ -11,7 +11,8 @@ Este arquivo armazena as identificações oficias do cliente Studio Odonto (Solu
 ## Meta Developers App
 
 - **Nome do App:** solution-app
-- **Identificação:** 1183720133879454
+- **Identificação (App ID):** 1183720133879454
+- **Site URL:** <https://studioodonto.xyz>
 - **De:** Studio Odonto
 
 ## Conta do WhatsApp Business
