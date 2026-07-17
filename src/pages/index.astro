@@ -40,6 +40,7 @@ import QRCode from '../components/QRCode.astro';
           <a href="/termos-de-uso">Termos de Uso</a>
         </div>
         <p class="footer-cnpj">Edificio Aquarius Center Empresarial · Goiânia · GO · Brasil</p>
+        <p class="footer-developer">Desenvolvido por <a href="https://neoflowoff.agency" target="_blank" rel="noopener noreferrer">neoflowoff.agency</a></p>
       </footer>
     </div>
   </main>
@@ -102,6 +103,23 @@ import QRCode from '../components/QRCode.astro';
     color: rgba(0, 0, 0, 0.3) !important;
   }
 
+  .footer-developer {
+    font-size: 9px !important;
+    color: rgba(0, 0, 0, 0.3) !important;
+    margin-top: 2px;
+  }
+
+  .footer-developer a {
+    color: rgba(0, 0, 0, 0.45);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .footer-developer a:hover {
+    color: #DB9E16;
+  }
+
   .footer-links {
     display: flex;
     align-items: center;
@@ -158,6 +176,10 @@ import QRCode from '../components/QRCode.astro';
 
     .footer-cnpj {
       font-size: 9px !important;
+    }
+
+    .footer-developer {
+      font-size: 8px !important;
     }
   }
 

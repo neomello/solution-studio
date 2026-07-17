@@ -33,7 +33,7 @@ Regra local:
 
 Confirmado:
 
-- WhatsApp: `+55 62 99358-8139`
+- WhatsApp: `+55 62 99267-2199`
 - Instagram: `https://www.instagram.com/solutionodonto/`
 - E-mail: `studioodonto.goiania@gmail.com`
 - Facebook: `Studio Odonto` (Página comercial, ID: 708178602387338)

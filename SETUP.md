@@ -1,155 +1,108 @@
-# TC Partners Official Hub - Setup
+<!-- markdownlint-disable MD003 MD007 MD013 MD022 MD023 MD025 MD029 MD032 MD033 MD034 -->
+# SETUP
 
-## Requisitos
+```text
+========================================
+     STUDIO ODONTO · PROJECT SETUP
+========================================
+Status: ACTIVE
+Version: v1.0.0
+========================================
+```
 
-Ambiente principal:
+## ⟠ Requisitos
 
-- macOS
-- Apple Silicon compativel
-- Node.js preferencialmente gerenciado por mise
-- PNPM como package manager oficial
+Ambiente de desenvolvimento principal:
 
-## Instalar dependencias
+- macOS (Apple Silicon compatível)
+- Node.js preferencialmente gerenciado via `mise` (versão >= 22.12.0)
+- PNPM como package manager oficial (versão >= 11)
+
+────────────────────────────────────────
+
+## ⧉ Instalação & Execução
+
+### 1. Instalar dependências
 
 ```bash
 make install
 ```
 
-Equivalente direto:
+> [!NOTE]
+> Equivale a executar `pnpm install --ignore-workspace` seguido de `pnpm rebuild`. Não use `pnpm install` puro neste diretório para evitar subir ao workspace do diretório pai.
+
+### 2. Executar em modo desenvolvimento
 
 ```bash
-pnpm install --ignore-workspace
+make dev
 ```
 
-Nao usar `pnpm install` puro neste diretorio. O projeto esta dentro do workspace superior `/Users/nettomello/CODIGOS`, e o PNPM sobe ate esse root quando a flag `--ignore-workspace` nao e usada.
+O servidor local de desenvolvimento ficará acessível em: `http://localhost:4321`
 
-## Rodar localmente
+### 3. Gerar build de produção
 
 ```bash
-pnpm run dev
+make build
 ```
 
-Servidor local padrao:
+A saída de build estático será gerada no diretório: `dist/`
 
-```text
-http://localhost:4321
-```
-
-## Build de producao
+### 4. Visualizar o build de produção localmente
 
 ```bash
-pnpm run build
+make preview
 ```
 
-Saida esperada:
+────────────────────────────────────────
 
-```text
-dist/
-```
+## ◬ Deploy cPanel
 
-## Preview local do build
+O deploy oficial deste hub digital é realizado via cPanel. A Vercel/Netlify não são alvos de deploy deste projeto.
 
-```bash
-pnpm run preview
-```
+### Processo de Publicação via cPanel
 
-## Deploy
+1. Execute `make build` localmente.
+2. Compacte o conteúdo gerado dentro do diretório `dist/` (assegure que `index.html` esteja na raiz do ZIP).
+3. No painel do cPanel, abra o **Gerenciador de arquivos** e vá para a pasta `public_html/`.
+4. Faça backup/renomeie a pasta antiga antes de substituições destrutivas.
+5. Envie e extraia o arquivo ZIP dentro de `public_html/`.
+6. Confirme a existência física dos arquivos críticos:
+   - `public_html/index.html`
+   - `public_html/.htaccess`
+   - `public_html/sw.js`
+   - `public_html/_assets/` (pasta de assets compilados)
+   - `public_html/robots.txt`
+   - `public_html/sitemap-index.xml` (ou `sitemap.xml`)
+7. Teste o acesso de ponta a ponta na URL de produção: `https://studioodonto.xyz/`
 
-Deploy oficial: cPanel.
-Vercel nao e alvo operacional deste projeto.
+────────────────────────────────────────
 
-Antes de publicar, validar:
+## ◉ Smoke Test
 
-```bash
-pnpm run build
-```
+Após iniciar o servidor (`make dev` ou `make preview`), valide manualmente os itens:
 
-Nao publicar com canais pendentes tratados como definitivos.
+- A página inicial carrega livre de erros de console.
+- A logo do cabeçalho renderiza perfeitamente.
+- O layout se comporta de forma totalmente responsiva (sem overflow horizontal em mobile).
+- O botão do WhatsApp redireciona para `https://wa.me/5562992672199`.
+- O link do Instagram aponta para `https://www.instagram.com/solutionodonto/`.
+- O e-mail corporativo aponta para `mailto:studioodonto.goiania@gmail.com`.
+- O manifesto PWA e o service worker carregam/registram sem erros de rede.
+- O favicon renderiza corretamente a partir de `/favicon.svg`.
 
-Para cPanel, enviar o conteudo de `dist/` para `public_html/`.
-Nao enviar a pasta `dist` como subpasta, e sim os arquivos dentro dela.
+────────────────────────────────────────
 
-### Publicacao via cPanel
+## ⚙ Troubleshooting
 
-1. Rodar `pnpm run build`.
-2. Compactar o conteudo de `dist/`, mantendo `index.html` na raiz do ZIP.
-3. Abrir cPanel -> Gerenciador de arquivos.
-4. Entrar em `public_html/`.
-5. Fazer backup ou renomear arquivos antigos antes de substituir.
-6. Enviar o ZIP.
-7. Extrair dentro de `public_html/`.
-8. Confirmar que `public_html/index.html`, `public_html/.htaccess`, `public_html/sw.js` e `public_html/_assets/` existem.
-9. Confirmar que `public_html/robots.txt` e `public_html/sitemap.xml` existem.
-10. Testar `https://tcpartners.com.br/`.
+Se houver divergências ou erros durante a execução, verifique as resoluções abaixo:
 
-## Smoke test minimo
+### 1. Compatibilidade Astro 7 + Vite 8
+Astro 7.x requer **Vite 8** para funcionar corretamente devido à nova arquitetura integrada com o Rolldown. Não force versões antigas de `vite` (ex: `^7`) no `package.json` ou via `overrides` de workspace, caso contrário o build quebrará com o erro:
+`rollupOptions.input should not be an html file when building for SSR`.
 
-Apos `pnpm run dev` ou `pnpm run preview`, verificar:
+### 2. Erros de script de build ignorados no PNPM v11 (`[ERR_PNPM_IGNORED_BUILDS]`)
+Por estar dentro de uma subpasta de um workspace, rodamos a instalação com a flag `--ignore-workspace`. Com isso, o pnpm v11 ignora o `pnpm-workspace.yaml` onde estaria a liberação dos scripts de compilação.
+- **Resolução**: Mantemos `strict-dep-builds=false` no arquivo `.npmrc` local para impedir o travamento e executamos o `pnpm rebuild` de forma sequencial logo após a instalação de dependências. Utilize sempre `make install` para automatizar esse fluxo.
 
-- pagina inicial carrega sem erro
-- logo aparece
-- cards aparecem em mobile
-- LinkedIn aponta para `https://www.linkedin.com/company/tc-partners-importacoes`
-- WhatsApp aponta para `https://wa.me/5547992051159`
-- Instagram aponta para `https://www.instagram.com/tcpartnerscomex`
-- E-mail aponta para `mailto:candido@tcpartners.com.br`
-- PWA manifest carrega
-- favicon carrega de `public/favicon.svg`
-- layout nao cria overflow horizontal em mobile
-
-## Troubleshooting conhecido
-
-Se houver divergencia entre documentacao antiga e estado atual, priorizar:
-
-1. `package.json`
-2. `AGENTS.md`
-3. `CONTEXT.md`
-4. decisao explicita mais recente do operador
-
-O estado vigente deste projeto usa PNPM.
-
-### Warning: Vite 8 detectado
-
-Astro 6 requer Vite 7. Se aparecer:
-
-```text
-Vite 8.0.16 detected in your project.
-Astro requires Vite 7.
-```
-
-Validar:
-
-```bash
-node -p "require('vite/package.json').version"
-```
-
-O contrato local deve manter:
-
-- `devDependencies.vite` em `^7`
-- `pnpm.overrides.vite` em `^7`
-
-Como este pacote fica dentro de um workspace PNPM superior em `/Users/nettomello/CODIGOS`, usar instalacao local quando for preciso normalizar este no isoladamente:
-
-```bash
-pnpm install --ignore-workspace
-```
-
-### Erro MissingSharp no build
-
-Se aparecer:
-
-```text
-MissingSharp: Could not find Sharp.
-```
-
-A causa e o pipeline do `astro:assets`, nao o tamanho do SVG.
-O projeto usa o componente `Image` no logo do header, entao o build precisa de `sharp`.
-
-Validar:
-
-```bash
-node -e "console.log(require('sharp/package.json').version)"
-pnpm run build
-```
-
-O contrato local deve manter `devDependencies.sharp`.
+### 3. Erro `MissingSharp` no build
+Caso o build apresente a mensagem `MissingSharp: Could not find Sharp`, certifique-se de que a dependência opcional `sharp` está instalada e compilada. O projeto consome o componente `<Image />` do Astro para o logotipo, exigindo o `sharp` ativo no ambiente do Node.

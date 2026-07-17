@@ -32,7 +32,7 @@ help: ## Exibe esta mensagem de ajuda
 
 verify: check-node audit docs astro-sync check-pwa check-seo ## Executa verificações base (node + audit + docs + sync + pwa + seo + build)
 	@echo "$(CYAN)➜ Validando build de produção...$(RESET)"
-	npx astro build
+	pnpm exec astro build
 	@echo "$(GREEN)➜ Verificação de protocolo concluída com sucesso!$(RESET)"
 
 docs: ## Verifica a integridade das pastas de documentação e regras
@@ -46,48 +46,49 @@ docs: ## Verifica a integridade das pastas de documentação e regras
 install: ## Instala as dependências do projeto
 	@echo "$(CYAN)➜ Sincronizando dependências com $(PM)...$(RESET)"
 	$(PM) install --ignore-workspace
+	$(PM) rebuild
 
 dev: ## Inicia o servidor de desenvolvimento
 	@echo "$(CYAN)➜ Iniciando núcleo de desenvolvimento...$(RESET)"
-	npx astro dev
+	pnpm exec astro dev
 
 dev-open: ## Inicia o Astro dev server abrindo o navegador
 	@echo "$(CYAN)➜ Iniciando Astro em modo dev com navegador...$(RESET)"
-	npx astro dev --open
+	pnpm exec astro dev --open
 
 dev-port: ## Inicia o Astro dev server em uma porta customizada: make dev-port PORT=8080
 	@echo "$(CYAN)➜ Iniciando Astro na porta $${PORT:-4321}...$(RESET)"
-	npx astro dev --port $${PORT:-4321}
+	pnpm exec astro dev --port $${PORT:-4321}
 
 build: ## Gera o build de produção
 	@echo "$(CYAN)➜ Orquestrando build de produção...$(RESET)"
-	npx astro build
+	pnpm exec astro build
 
 build-verbose: ## Gera build com logs detalhados do Astro
 	@echo "$(CYAN)➜ Orquestrando build com logs verbosos...$(RESET)"
-	npx astro build --verbose
+	pnpm exec astro build --verbose
 
 build-debug: ## Gera build com saída de desenvolvimento para investigar issues de build
 	@echo "$(CYAN)➜ Orquestrando build debug do Astro...$(RESET)"
-	npx astro build --devOutput --verbose
+	pnpm exec astro build --devOutput --verbose
 
 preview: ## Visualiza o build de produção localmente
 	@echo "$(CYAN)➜ Iniciando visualização do build...$(RESET)"
-	npx astro preview
+	pnpm exec astro preview
 
 preview-open: ## Visualiza o build local e abre o navegador
 	@echo "$(CYAN)➜ Iniciando preview com navegador...$(RESET)"
-	npx astro preview --open
+	pnpm exec astro preview --open
 
 astro-help: ## Lista comandos disponíveis da CLI Astro
-	npx astro --help
+	pnpm exec astro --help
 
 astro-info: ## Mostra informações do ambiente Astro
-	npx astro info
+	pnpm exec astro info
 
 astro-sync: ## Sincroniza tipos e módulos gerados do Astro
 	@echo "$(CYAN)➜ Sincronizando tipos do Astro...$(RESET)"
-	npx astro sync
+	pnpm exec astro sync
 
 check-pwa: check-manifest check-sw check-js ## Audita contrato PWA local
 	@echo "$(GREEN)➜ Contrato PWA validado.$(RESET)"
@@ -131,9 +132,9 @@ check-robots: ## Verifica robots.txt público
 	@rg -q "^Allow: /" public/robots.txt || (echo "$(RED)ERRO: robots.txt sem Allow: /$(RESET)" && exit 1)
 	@echo "$(GREEN)➜ robots.txt validado.$(RESET)"
 
-clean: ## Limpa artefatos de build (preserva lockfile)
-	@echo "$(CYAN)➜ Limpando artefatos temporários...$(RESET)"
-	rm -rf dist/ .astro/
+clean: ## Limpa artefatos de build e node_modules (preserva lockfile)
+	@echo "$(CYAN)➜ Limpando artefatos temporários e node_modules...$(RESET)"
+	rm -rf dist/ .astro/ node_modules/
 
 repair: clean ## Limpa node_modules e reinstala (preserva lockfile)
 	@echo "$(RED)➜ EXECUTANDO REPARO...$(RESET)"

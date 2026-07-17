@@ -1,90 +1,106 @@
-# Studio Odonto Official Hub - Agent Instructions
+<!-- markdownlint-disable MD003 MD007 MD013 MD022 MD023 MD025 MD029 MD032 MD033 MD034 -->
+# AGENTS
 
-Este arquivo define as regras locais para agentes atuando neste nó.
+```text
+========================================
+    STUDIO ODONTO · AGENT INSTRUCTIONS
+========================================
+Status: ACTIVE
+Version: v1.0.0
+========================================
+```
 
-## Identidade do nó
+## ⟠ Identidade do Nó
 
-- Projeto: Studio Odonto Official Hub
-- Papel: camada zero da presença digital oficial da Studio Odonto (Solution Odonto)
-- Stack: Astro, TypeScript, PWA
-- Package manager oficial: PNPM
-- Deploy oficial: cPanel
-- Domínio SEO/JSON-LD vigente: `https://studioodonto.xyz`
+Instruções e regras locais para agentes autônomos atuando neste nó digital:
 
-## Fronteira local
+- **Projeto**: Studio Odonto Official Hub
+- **Papel**: Camada zero da presença digital oficial da Studio Odonto (Solution Odonto)
+- **Stack**: Astro, TypeScript, PWA
+- **Package Manager**: PNPM (versão >= 11)
+- **Deploy**: cPanel
+- **Domínio SEO/JSON-LD**: `https://studioodonto.xyz`
 
-Este diretório não consome um `pnpm-workspace.yaml` ou instruções de agente em pasta pai imediata.
-Por PNPM, este pacote também pode ser capturado pelo workspace superior em `/Users/nettomello/CODIGOS`.
-Para normalizar somente este nó, usar `pnpm install --ignore-workspace`.
+────────────────────────────────────────
 
-Nós compartilham serviços e contratos. Nós não compartilham arquivos.
-Não criar acoplamento por código com outros projetos.
+## ⨷ Fronteira Local
 
-## Antes de alterar
+Este diretório é autônomo, não consome um `pnpm-workspace.yaml` na raiz do projeto (apenas para configurações locais de build), e pode ser capturado pelo workspace superior em `/Users/nettomello/CODIGOS`.
 
-Ler, nesta ordem, quando existirem:
+- Para isolar e instalar apenas este nó, use: `pnpm install --ignore-workspace` (gerenciado por `make install`).
+- Projetos compartilham contratos, mas não arquivos. Não crie acoplamento de código entre este nó e outros diretórios do workspace.
 
-1. `AGENTS.md`
-2. `CONTEXT.md`
-3. `SETUP.md`
-4. `SKILL.md`
-5. `MEMORY.md`
-6. `README.md`
-7. `BRANDING.md`
+────────────────────────────────────────
 
-Não alterar `.env`, credenciais, chaves, tokens, arquivos privados ou configurações sensíveis.
-Não ler nem expor segredos sem autorização explícita.
+## ⧉ Antes de Alterar
 
-## Escopo preferencial de mudança
+Consulte e compreenda a documentação local nesta ordem de precedência:
 
-Priorizar alterações pequenas e auditáveis em:
+1. `AGENTS.md` (Este documento)
+2. `CONTEXT.md` (Contexto de negócios do cliente)
+3. `SETUP.md` (Guia de ambiente e troubleshooting)
+4. `SKILL.md` (Habilidades do nó)
+5. `MEMORY.md` (Histórico de decisões do projeto)
+6. `README.md` / `BRANDING.md`
 
-- responsividade e mobile
-- conteúdo dos cards e canais
-- SEO e JSON-LD
-- PWA e manifest
-- performance visual
-- acessibilidade básica
-- consistência com `BRANDING.md`
+> [!CAUTION]
+> Não altere chaves de ambiente `.env`, segredos, tokens ou configurações sensíveis. Nunca insira credenciais em arquivos monitorados pelo Git.
 
-Evitar rewrites, novas dependências e abstrações futuras sem necessidade real.
+────────────────────────────────────────
 
-## Contratos atuais
+## ⍟ Escopo Preferencial
 
-- WhatsApp confirmado: `+55 62 99358-8139`
-- Instagram confirmado: `https://www.instagram.com/solutionodonto/`
-- E-mail confirmado: `studioodonto.goiania@gmail.com`
-- Facebook confirmado para SEO/JSON-LD: `Studio Odonto` (ID: `708178602387338`)
-- Paleta aprovada: Fundo `#F7F5F0`, Ouro `#DB9E16`, Texto `#000000`
-- Configurações Meta detalhadas em: `docs/META-config.md`
-- Logo principal: `public/logo_horiz.svg` e `public/logos/logo.png`
+Priorize pequenas alterações e melhorias focadas em:
 
-## Integrações previstas
+- Responsividade e otimização visual para mobile.
+- Conteúdo dos cards, links e canais de contato.
+- Otimização de SEO (JSON-LD, meta tags, sitemap).
+- Integração PWA, manifestos de ícones e service worker.
+- Desempenho geral e conformidade com `BRANDING.md`.
 
-Futuras integrações devem preservar degradação segura e auditabilidade:
+Evite refatorações massivas ou adição de novas dependências sem aprovação explícita.
+
+────────────────────────────────────────
+
+## ⨷ Contratos Atuais
+
+Valores oficiais validados pelo cliente:
+
+- **WhatsApp**: `+55 62 99267-2199`
+- **Instagram**: `https://www.instagram.com/solutionodonto/`
+- **E-mail**: `studioodonto.goiania@gmail.com`
+- **Facebook (SEO/JSON-LD)**: `Studio Odonto` (Página comercial ID: `708178602387338`)
+- **Paleta de Cores**: Bege Claro `#F7F5F0`, Ouro `#DB9E16`, Texto `#000000`
+- **Logotipos**: `public/logo_horiz.svg` e `public/logos/logo.png`
+
+────────────────────────────────────────
+
+## ◬ Integrações Previstas
+
+Mantenha o desligamento seguro e degradável para qualquer recurso externo:
 
 - Google Analytics
-- Meta Pixel e Conversions API (C-API)
-- recursos avançados de UTM
-- Meta for Developers
-- Formulário de captação
+- Meta Pixel & Conversions API (C-API) (Ver `docs/META-config.md`)
+- Captura de parâmetros UTM
+- Formulários de contato/leads
 
-Não implementar integração externa sem contrato definido e sem caminho de desligamento.
+────────────────────────────────────────
 
-## Validação
+## ⚙ Validação
 
-Para mudanças JS/TS/Astro, rodar:
+O Makefile local é o orquestrador padrão. Sempre execute validações completas antes de finalizar tarefas:
 
-```bash
-pnpm run build
-```
+1. Auditoria, sincronização e build de produção:
 
-Quando houver mudança visual relevante, também rodar:
+   ```bash
+   make verify
+   ```
 
-```bash
-pnpm run dev
-```
+2. Servidor local de desenvolvimento:
 
-e validar no navegador em mobile e desktop.
+   ```bash
+   make dev
+   ```
 
-Se forem adicionados scripts de lint, typecheck ou testes, atualizar `SETUP.md`.
+> [!IMPORTANT]
+> Em caso de erros de compilação nativa do `esbuild` ou `sharp` decorrentes de restrições do pnpm v11, execute `make install` para rodar o processo de reinstalação com auto-recompilação.

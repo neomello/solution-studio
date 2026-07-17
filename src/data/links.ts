@@ -19,7 +19,7 @@ export const portalLinks = [
     id: "whatsapp",
     label: "WhatsApp Comercial",
     description: "Inicie uma conversa com a equipe",
-    href: "https://wa.me/5562993588139?text=Ol%C3%A1%2C%20vim%20pelo%20hub%20oficial%20do%20Studio%20Odonto.",
+    href: "https://wa.me/5562992672199?text=Ol%C3%A1%2C%20vim%20pelo%20hub%20oficial%20do%20Studio%20Odonto.",
     external: true,
     event: "click_whatsapp",
   },

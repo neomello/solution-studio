@@ -17,12 +17,6 @@
   },
   "devDependencies": {
     "@vite-pwa/assets-generator": "^1.0.2",
-    "sharp": "^0.34.5",
-    "vite": "^7"
-  },
-  "pnpm": {
-    "overrides": {
-      "vite": "^7"
-    }
+    "sharp": "^0.34.5"
   }
 }

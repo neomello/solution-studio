@@ -10,7 +10,7 @@
 ========================================
 Status: ACTIVE
 Version: v1.0.0
-Stack: Astro 6 · TypeScript · PWA
+Stack: Astro 7 · TypeScript · PWA
 Deploy: cPanel
 ========================================
 ```
@@ -34,10 +34,11 @@ Não é "site em construção".
 ## ⧇ Comandos
 
 ```bash
-make install      # instalar dependências sem capturar o workspace superior
-pnpm run dev      # servidor local http://localhost:4321
-pnpm run build    # build de produção → dist/
-pnpm run preview  # preview do build estático
+make install      # instala dependências e executa o rebuild automático
+make dev          # inicia o servidor local em http://localhost:4321
+make build        # gera o build de produção estático em dist/
+make preview      # visualiza o build de produção localmente
+make verify       # executa a validação completa do protocolo
 ```
 
 ────────────────────────────────────────
@@ -88,7 +89,7 @@ public/
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃ #  CANAL                AÇÃO
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-┃ 1  WhatsApp Comercial   +55 62 9267-2199
+┃ 1  WhatsApp Comercial   +55 62 99267-2199
 ┃ 2  E-mail               studioodonto.goiania@gmail.com
 ┃ 3  Instagram            instagram.com/solutionodonto
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
