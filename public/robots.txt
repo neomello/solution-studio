@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Allow: /politica-de-privacidade
 Allow: /termos-de-uso
+Allow: /exclusao-de-dados
 
 Sitemap: https://studioodonto.xyz/sitemap.xml
