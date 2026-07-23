@@ -91,7 +91,7 @@ public/
 ┃ #  CANAL                AÇÃO
 ┣━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ┃ 1  WhatsApp Comercial   +55 62 99267-2199
-┃ 2  E-mail               studioodonto.goiania@gmail.com
+┃ 2  E-mail               lucieneleao@studioodonto.xyz
 ┃ 3  Instagram            instagram.com/solutionodonto
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```

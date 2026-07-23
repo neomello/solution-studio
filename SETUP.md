@@ -86,7 +86,7 @@ Após iniciar o servidor (`make dev` ou `make preview`), valide manualmente os i
 - O layout se comporta de forma totalmente responsiva (sem overflow horizontal em mobile).
 - O botão do WhatsApp redireciona para `https://wa.me/5562992672199`.
 - O link do Instagram aponta para `https://www.instagram.com/solutionodonto/`.
-- O e-mail corporativo aponta para `mailto:studioodonto.goiania@gmail.com`.
+- O e-mail corporativo aponta para `mailto:lucieneleao@studioodonto.xyz`.
 - O manifesto PWA e o service worker carregam/registram sem erros de rede.
 - O favicon renderiza corretamente a partir de `/favicon.svg`.
 

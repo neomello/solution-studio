@@ -31,7 +31,7 @@ Transição de identidade visual e canais do hub digital:
 - **Canais Sociais**:
   - **WhatsApp**: `+55 62 99267-2199` (Atualizado em 2026-07-17).
   - **Instagram**: `https://www.instagram.com/solutionodonto/`.
-  - **E-mail**: `studioodonto.goiania@gmail.com`.
+  - **E-mail**: `lucieneleao@studioodonto.xyz`.
   - **Facebook Page**: `Studio Odonto` (ID comercial: `708178602387338`).
   - **LinkedIn**: Removido por decisão comercial.
 - **Identidade da Logo**: O hub consome exclusivamente `public/logo_horiz.svg` e `public/logos/logo.png`.

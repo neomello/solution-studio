@@ -68,7 +68,7 @@ Valores oficiais validados pelo cliente:
 
 - **WhatsApp**: `+55 62 99267-2199`
 - **Instagram**: `https://www.instagram.com/solutionodonto/`
-- **E-mail**: `studioodonto.goiania@gmail.com`
+- **E-mail**: `lucieneleao@studioodonto.xyz`
 - **Facebook (SEO/JSON-LD)**: `Studio Odonto` (Página comercial ID: `708178602387338`)
 - **Paleta de Cores**: Bege Claro `#F7F5F0`, Ouro `#DB9E16`, Texto `#000000`
 - **Logotipos**: `public/logo_horiz.svg` e `public/logos/logo.png`

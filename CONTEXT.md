@@ -35,7 +35,7 @@ Confirmado:
 
 - WhatsApp: `+55 62 99267-2199`
 - Instagram: `https://www.instagram.com/solutionodonto/`
-- E-mail: `studioodonto.goiania@gmail.com`
+- E-mail: `lucieneleao@studioodonto.xyz`
 - Facebook: `Studio Odonto` (Página comercial, ID: 708178602387338)
 
 Observação:

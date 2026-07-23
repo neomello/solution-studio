@@ -26,8 +26,8 @@ export const portalLinks = [
   {
     id: "email",
     label: "E-mail corporativo",
-    description: "studioodonto.goiania@gmail.com",
-    href: "mailto:studioodonto.goiania@gmail.com",
+    description: "lucieneleao@studioodonto.xyz",
+    href: "mailto:lucieneleao@studioodonto.xyz",
     external: false,
     event: "click_email",
   },
