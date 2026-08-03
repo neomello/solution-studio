@@ -16,7 +16,7 @@ RESET   := \033[0m
 
 .DEFAULT_GOAL := help
 
-.PHONY: help install dev dev-open dev-port build build-verbose build-debug preview preview-open clean audit verify commit docs repair repair-lockfile update check-node astro-help astro-info astro-sync check-manifest check-sw check-js check-seo check-robots check-pwa
+.PHONY: help install dev dev-open dev-port build build-verbose build-debug preview preview-open clean audit verify commit docs repair repair-lockfile update check-node astro-help astro-info astro-sync check-manifest check-sw check-js check-seo check-robots check-pwa deploy
 
 check-node: ## Valida runtime Node.js >=22.12.0
 	@node -e "const v=process.versions.node.split('.').map(Number);const ok=v[0]>22||(v[0]===22&&(v[1]>12||(v[1]===12&&v[2]>=0)));if(!ok){console.error('ERRO: Node.js >=22.12.0 requerido. Atual: '+process.versions.node);process.exit(1)}"
@@ -169,3 +169,10 @@ commit: verify ## Fluxo NΞØ Protocol: Verifica, Adiciona, Comita e Faz Push (B
 	@echo "$(CYAN)➜ Fazendo push para a branch atual...$(RESET)"
 	git push origin $$(git rev-parse --abbrev-ref HEAD)
 	@echo "$(GREEN)➜ Operação concluída com sucesso.$(RESET)"
+
+deploy: verify ## Executa verificações e faz deploy para o Cloudflare Pages
+	@echo "$(MAGENTA)========================================$(RESET)"
+	@echo "$(MAGENTA)    NΞØ PROTOCOL · CLOUDFLARE DEPLOY    $(RESET)"
+	@echo "$(MAGENTA)========================================$(RESET)"
+	npx wrangler pages deploy dist --project-name studioodonto
+
