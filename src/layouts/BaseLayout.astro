@@ -126,6 +126,64 @@ const jsonLd = JSON.stringify({
   </head>
   <body>
     <slot />
+    <script is:inline>
+      (function() {
+        const params = new URLSearchParams(window.location.search);
+        const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'utm_id'];
+        const utmData = {};
+        let hasNewUtm = false;
+
+        utmKeys.forEach(function(key) {
+          const val = params.get(key);
+          if (val) {
+            utmData[key] = val;
+            hasNewUtm = true;
+          }
+        });
+
+        if (hasNewUtm) {
+          try {
+            sessionStorage.setItem('studio_odonto_utm_data', JSON.stringify(utmData));
+          } catch (e) {
+            // sessionStorage is not available
+          }
+        } else {
+          try {
+            const saved = sessionStorage.getItem('studio_odonto_utm_data');
+            if (saved) {
+              Object.assign(utmData, JSON.parse(saved));
+            }
+          } catch (e) {
+            // sessionStorage reading failed
+          }
+        }
+
+        function propagateUtms() {
+          if (Object.keys(utmData).length === 0) return;
+          document.querySelectorAll('a').forEach(function(link) {
+            try {
+              const href = link.getAttribute('href');
+              if (!href) return;
+              if (href.includes('wa.me') || href.includes('whatsapp.com')) {
+                const url = new URL(href);
+                Object.keys(utmData).forEach(function(key) {
+                  url.searchParams.set(key, utmData[key]);
+                });
+                link.setAttribute('href', url.toString());
+              }
+            } catch (e) {
+              // Ignore invalid or relative URLs
+            }
+          });
+        }
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', propagateUtms);
+        } else {
+          propagateUtms();
+        }
+      })();
+    </script>
   </body>
 </html>
 
