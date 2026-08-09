@@ -1,6 +1,7 @@
 allowBuilds:
   esbuild: true
   sharp: true
+  workerd: true
 
 overrides:
   "brace-expansion@2": "^2.1.4"
@@ -8,6 +9,3 @@ overrides:
   "postcss": "^8.5.23"
   "fast-uri": "^3.1.4"
   "sharp": "^0.35.3"
-
-
-
