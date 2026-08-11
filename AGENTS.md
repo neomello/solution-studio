@@ -18,7 +18,7 @@ Instruções e regras locais para agentes autônomos atuando neste nó digital:
 - **Papel**: Camada zero da presença digital oficial da Studio Odonto (Solution Odonto)
 - **Stack**: Astro, TypeScript, PWA
 - **Package Manager**: PNPM (versão >= 11)
-- **Deploy**: cPanel
+- **Deploy**: Render.com (serviço: `solution-studio.onrender.com`) + Cloudflare DNS
 - **Domínio SEO/JSON-LD**: `https://studioodonto.xyz`
 
 ────────────────────────────────────────
