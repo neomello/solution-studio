@@ -10,33 +10,90 @@ const {
 } = Astro.props;
 
 const siteUrl = 'https://studioodonto.xyz';
+const rawPathname = Astro.url.pathname.replace(/\/$/, '') || '';
+const canonicalUrl = `${siteUrl}${rawPathname}`;
 const ogImage = `${siteUrl}/og/og-image.png`;
+const metaPixelId = import.meta.env.PUBLIC_META_PIXEL_ID || '2786954951664102';
 
 const jsonLd = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Studio Odonto",
-  "legalName": "Studio Odonto",
-  "url": siteUrl,
-  "logo": {
-    "@type": "ImageObject",
-    "url": `${siteUrl}/logos/logo.png`
-  },
-  "email": "lucieneleao@studioodonto.xyz",
-  "telephone": "+55 62 99267-2199",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Rua T-36, Setor Bueno",
-    "addressLocality": "Goiânia",
-    "addressRegion": "GO",
-    "postalCode": "74230-105",
-    "addressCountry": "BR"
-  },
-  "areaServed": "BR",
-  "description": "Clínica odontológica no Setor Bueno, em Goiânia, especializada em estética dental, facetas de resina de alta qualidade e tratamentos para renovar a harmonia do sorriso.",
-  "sameAs": [
-    "https://www.instagram.com/solutionodonto/",
-    "https://www.facebook.com/profile.php?id=708178602387338"
+  "@graph": [
+    {
+      "@type": "Dentist",
+      "@id": `${siteUrl}/#organization`,
+      "name": "Studio Odonto",
+      "alternateName": [
+        "Solution Odonto",
+        "Studio Odonto Goiânia",
+        "Solution Odonto Goiânia",
+        "studioodonto.xyz"
+      ],
+      "legalName": "Studio Odonto",
+      "url": siteUrl,
+      "logo": {
+        "@type": "ImageObject",
+        "url": `${siteUrl}/logos/logo.png`,
+        "width": 512,
+        "height": 512,
+        "caption": "Logotipo Studio Odonto"
+      },
+      "image": ogImage,
+      "email": "lucieneleao@studioodonto.xyz",
+      "telephone": "+55 62 99267-2199",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Edifício Aquarius Center Empresarial - R. T-36, Setor Bueno",
+        "addressLocality": "Goiânia",
+        "addressRegion": "GO",
+        "postalCode": "74230-105",
+        "addressCountry": "BR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": -16.7027,
+        "longitude": -49.2676
+      },
+      "areaServed": [
+        {
+          "@type": "City",
+          "name": "Goiânia"
+        },
+        {
+          "@type": "State",
+          "name": "Goiás"
+        },
+        {
+          "@type": "Country",
+          "name": "Brasil"
+        }
+      ],
+      "description": "Clínica odontológica no Setor Bueno, em Goiânia, especializada em estética dental, facetas de resina de alta qualidade, lentes de contato dental e tratamentos para renovar a harmonia do sorriso.",
+      "knowsAbout": [
+        "Estética Dental",
+        "Facetas de Resina",
+        "Lentes de Contato Dental",
+        "Clareamento Dental",
+        "Harmonização Bucal",
+        "Odontologia Preventiva",
+        "Odontologia Restauradora"
+      ],
+      "sameAs": [
+        "https://www.instagram.com/solutionodonto/",
+        "https://www.facebook.com/profile.php?id=708178602387338"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      "url": siteUrl,
+      "name": "Studio Odonto · Solution Odonto",
+      "alternateName": ["Studio Odonto", "Solution Odonto"],
+      "inLanguage": "pt-BR",
+      "publisher": {
+        "@id": `${siteUrl}/#organization`
+      }
+    }
   ]
 });
 ---
@@ -52,7 +109,7 @@ const jsonLd = JSON.stringify({
     <meta name="robots" content="index, follow" />
 
     <title>{title}</title>
-    <link rel="canonical" href={siteUrl} />
+    <link rel="canonical" href={canonicalUrl} />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -112,6 +169,47 @@ const jsonLd = JSON.stringify({
 
       gtag('config', 'G-3M1YV9J2DB');
     </script>
+
+    <!-- Meta Pixel & C-API Dual Tracking -->
+    <script is:inline define:vars={{ metaPixelId }}>
+      (function() {
+        var pageViewId = 'evt_' + Date.now() + '_' + Math.random().toString(36).substring(2, 9);
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', metaPixelId);
+        fbq('track', 'PageView', {}, { eventID: pageViewId });
+
+        try {
+          var matchFbp = document.cookie.match(new RegExp('(^| )_fbp=([^;]+)'));
+          var fbp = matchFbp ? decodeURIComponent(matchFbp[2]) : undefined;
+          var matchFbc = document.cookie.match(new RegExp('(^| )_fbc=([^;]+)'));
+          var fbc = matchFbc ? decodeURIComponent(matchFbc[2]) : undefined;
+
+          fetch('/api/meta-capi', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            keepalive: true,
+            body: JSON.stringify({
+              event_name: 'PageView',
+              event_id: pageViewId,
+              event_source_url: window.location.href,
+              user_data: { fbp: fbp, fbc: fbc }
+            })
+          }).catch(function() {});
+        } catch(e) {}
+      })();
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none"
+      src={`https://www.facebook.com/tr?id=${metaPixelId}&ev=PageView&noscript=1`}
+      />
+    </noscript>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

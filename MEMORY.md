@@ -36,6 +36,15 @@ Transição de identidade visual e canais do hub digital:
   - **LinkedIn**: Removido por decisão comercial.
 - **Identidade da Logo**: O hub consome exclusivamente `public/logo_horiz.svg` e `public/logos/logo.png`.
 
+### 2026-08-11 — Vinculação do Meta App de Tráfego Pago & Meta C-API
+
+Registro de controle de tráfego pago no ecossistema Meta e ativação do C-API Dual-Tracking:
+
+- **Meta App Gestor**: `NEØFLW // Ads Manager` (App ID: `470678155999569`).
+- **Meta Pixel ID**: `2786954951664102`.
+- **Modo Hard Avançado**: Ativado C-API Dual-Tracking via Cloudflare Edge Function (`/api/meta-capi`) com deduplicação determinística por `event_id` (Navegador + Server-Side).
+- **Documentação de Referência**: `docs/META-config.md`.
+
 ────────────────────────────────────────
 
 ## ◬ Integrações Futuras Planilhadas

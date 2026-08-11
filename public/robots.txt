@@ -3,5 +3,23 @@ Allow: /
 Allow: /politica-de-privacidade
 Allow: /termos-de-uso
 Allow: /exclusao-de-dados
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+
+# AI Agents & Search Engine Crawlers (Content Signals IETF Draft)
+User-agent: GPTBot
+Allow: /
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+
+User-agent: ClaudeBot
+Allow: /
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+
+User-agent: PerplexityBot
+Allow: /
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+
+User-agent: Google-Extended
+Allow: /
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
 
 Sitemap: https://studioodonto.xyz/sitemap.xml
