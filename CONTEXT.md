@@ -27,7 +27,7 @@ Regra local:
 - Endereço: Rua T-36, Setor Bueno, Goiânia - GO, 74230-105
 - Assinatura: (A definir, sem tagline atual)
 - Domínio SEO/JSON-LD vigente: `https://studioodonto.xyz`
-- Deploy oficial: cPanel
+- Deploy oficial: Render.com (`solution-studio.onrender.com`) via GitHub `origin/main` + Cloudflare DNS
 
 ## Canais oficiais
 

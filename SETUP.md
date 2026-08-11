@@ -55,14 +55,15 @@ make preview
 
 ────────────────────────────────────────
 
-## ◬ Deploy cPanel
+## ◬ Deploy & Hospedagem (Render.com + Cloudflare DNS)
 
-O deploy oficial deste hub digital é realizado via cPanel. A Vercel/Netlify não são alvos de deploy deste projeto.
+O deploy deste hub digital é hospedado no **Render.com** (serviço: `solution-studio.onrender.com`) com DNS e SSL gerenciados via **Cloudflare** (`studioodonto.xyz`).
 
-### Processo de Publicação via cPanel
+### Processo de Publicação via Render.com
 
-1. Execute `make build` localmente.
-2. Compacte o conteúdo gerado dentro do diretório `dist/` (assegure que `index.html` esteja na raiz do ZIP).
+1. Execute `make verify` ou `make deploy`.
+2. O comando enviará os commits para a branch `main` do GitHub (`neomello/solution-studio`).
+3. O Render compilará o build automaticamente a cada push na branch `main`.
 3. No painel do cPanel, abra o **Gerenciador de arquivos** e vá para a pasta `public_html/`.
 4. Faça backup/renomeie a pasta antiga antes de substituições destrutivas.
 5. Envie e extraia o arquivo ZIP dentro de `public_html/`.

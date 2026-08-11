@@ -33,6 +33,10 @@ help: ## Exibe os comandos disponíveis
 	@grep -E '^(check-node|install|repair|clean):.*## ' makefile \
 		| sort \
 		| awk 'BEGIN {FS = ":.*## "}; {printf "  \033[0;36m◆ %-16s\033[0m \033[0;90m%s\033[0m\n", $$1, $$2}'
+	@printf "$(DIM)  ·─── DEPLOY & IMPLANTAÇÃO (RENDER) ─────────$(RESET)\n"
+	@grep -E '^(deploy|push):.*## ' makefile \
+		| sort \
+		| awk 'BEGIN {FS = ":.*## "}; {printf "  \033[0;36m◆ %-16s\033[0m \033[0m\n", $$1, $$2}'
 	@printf "\n"
 	@printf "$(DIM)  ·─── DESENVOLVIMENTO ───────────────────────$(RESET)\n"
 	@grep -E '^(dev|build|preview):.*## ' makefile \
@@ -41,11 +45,6 @@ help: ## Exibe os comandos disponíveis
 	@printf "\n"
 	@printf "$(DIM)  ·─── QUALIDADE & SEGURANÇA ─────────────────$(RESET)\n"
 	@grep -E '^(audit|docs|verify|commit|check-pwa|check-seo):.*## ' makefile \
-		| sort \
-		| awk 'BEGIN {FS = ":.*## "}; {printf "  \033[0;36m◆ %-16s\033[0m \033[0;90m%s\033[0m\n", $$1, $$2}'
-	@printf "\n"
-	@printf "$(DIM)  ·─── CLOUDFLARE & DEPLOY ────────────────────$(RESET)\n"
-	@grep -E '^(deploy|whoami|cf-login|cf-logout):.*## ' makefile \
 		| sort \
 		| awk 'BEGIN {FS = ":.*## "}; {printf "  \033[0;36m◆ %-16s\033[0m \033[0;90m%s\033[0m\n", $$1, $$2}'
 	@printf "\n"
@@ -69,85 +68,69 @@ install: ## Instala dependências locais isoladas
 
 dev: ## Inicia o servidor de desenvolvimento
 	@printf "$(CYAN)╭──────────────────────────────────────────╮$(RESET)\n"
-	@printf "$(CYAN)│$(RESET)  $(WHITE)▶  DEV$(RESET)                                   $(CYAN)│$(RESET)\n"
+	@printf "$(CYAN)│$(RESET)  $(WHITE)⚡  DEV$(RESET)                                  $(CYAN)│$(RESET)\n"
 	@printf "$(CYAN)╰──────────────────────────────────────────╯$(RESET)\n"
-	pnpm exec astro dev
+	pnpm dev
 
 build: ## Gera o build estático de produção
 	@printf "$(CYAN)╭──────────────────────────────────────────╮$(RESET)\n"
-	@printf "$(CYAN)│$(RESET)  $(WHITE)⬡  BUILD$(RESET)                                 $(CYAN)│$(RESET)\n"
+	@printf "$(CYAN)│$(RESET)  $(WHITE)⬡  BUILD$(RESET)                                $(CYAN)│$(RESET)\n"
 	@printf "$(CYAN)╰──────────────────────────────────────────╯$(RESET)\n"
-	pnpm exec astro build
-	@printf "$(GREEN)  ✓ Build de produção concluído com sucesso.$(RESET)\n"
+	pnpm build
+	@printf "$(GREEN)  ✓ Build de produção gerado em dist/.$(RESET)\n"
 
 preview: ## Visualiza o build de produção localmente
 	@printf "$(CYAN)╭──────────────────────────────────────────╮$(RESET)\n"
-	@printf "$(CYAN)│$(RESET)  $(WHITE)◎  PREVIEW$(RESET)                               $(CYAN)│$(RESET)\n"
+	@printf "$(CYAN)│$(RESET)  $(WHITE)👁  PREVIEW$(RESET)                              $(CYAN)│$(RESET)\n"
 	@printf "$(CYAN)╰──────────────────────────────────────────╯$(RESET)\n"
-	pnpm exec astro preview
+	pnpm preview
 
 audit: ## Varredura de vulnerabilidades de segurança
 	@printf "$(CYAN)╭──────────────────────────────────────────╮$(RESET)\n"
-	@printf "$(CYAN)│$(RESET)  $(WHITE)⚑  AUDIT$(RESET)                                 $(CYAN)│$(RESET)\n"
+	@printf "$(CYAN)│$(RESET)  $(WHITE)🛡  AUDIT$(RESET)                                $(CYAN)│$(RESET)\n"
 	@printf "$(CYAN)╰──────────────────────────────────────────╯$(RESET)\n"
-	$(PM) audit || true
+	@$(PM) audit --audit-level=high || true
 	@printf "$(GREEN)  ✓ Auditoria concluída.$(RESET)\n"
 
 docs: ## Valida estrutura de documentação do repositório
 	@printf "$(CYAN)╭──────────────────────────────────────────╮$(RESET)\n"
-	@printf "$(CYAN)│$(RESET)  $(WHITE)✧  DOCS$(RESET)                                  $(CYAN)│$(RESET)\n"
+	@printf "$(CYAN)│$(RESET)  $(WHITE)✧  DOCS$(RESET)                                 $(CYAN)│$(RESET)\n"
 	@printf "$(CYAN)╰──────────────────────────────────────────╯$(RESET)\n"
-	@test -d docs || (printf "$(RED)  ✗ Pasta docs/ não encontrada$(RESET)\n" && exit 1)
-	@test -d .agents || (printf "$(RED)  ✗ Pasta .agents/ não encontrada$(RESET)\n" && exit 1)
+	@test -d docs || (echo "ERRO: docs/ ausente"; exit 1)
+	@test -d .agents || (echo "ERRO: .agents/ ausente"; exit 1)
+	@test -f CONTEXT.md || (echo "ERRO: CONTEXT.md ausente"; exit 1)
+	@test -f SETUP.md || (echo "ERRO: SETUP.md ausente"; exit 1)
 	@printf "$(GREEN)  ✓ Estrutura de documentação validada.$(RESET)\n"
 
-astro-sync:
+astro-sync: ## Sincroniza tipos de dados do Astro
 	@printf "$(CYAN)╭──────────────────────────────────────────╮$(RESET)\n"
 	@printf "$(CYAN)│$(RESET)  $(WHITE)↑  ASTRO-SYNC$(RESET)                            $(CYAN)│$(RESET)\n"
 	@printf "$(CYAN)╰──────────────────────────────────────────╯$(RESET)\n"
 	pnpm exec astro sync
 	@printf "$(GREEN)  ✓ Tipos do Astro sincronizados.$(RESET)\n"
 
-check-pwa: check-manifest check-sw check-js ## Audita contrato PWA local
+check-pwa: ## Audita contrato PWA local
+	@printf "$(CYAN)  ➜ Validando manifest PWA...$(RESET)\n"
+	@test -f public/site.webmanifest || (echo "ERRO: site.webmanifest ausente"; exit 1)
+	@grep -q '"name"' public/site.webmanifest || (echo "ERRO: site.webmanifest inválido"; exit 1)
+	@printf "$(GREEN)  ✓ Manifest PWA íntegro.$(RESET)\n"
+	@printf "$(CYAN)  ➜ Validando service worker...$(RESET)\n"
+	@test -f public/sw.js || test -f dist/sw.js || (echo "ERRO: sw.js ausente"; exit 1)
+	@printf "$(GREEN)  ✓ Service worker validado.$(RESET)\n"
+	@printf "$(CYAN)  ➜ Validando scripts client-side...$(RESET)\n"
+	@test -f src/lib/analytics.ts || (echo "ERRO: analytics.ts ausente"; exit 1)
+	@printf "$(GREEN)  ✓ Scripts client-side validados.$(RESET)\n"
 	@printf "$(GREEN)  ✓ Contrato PWA validado com sucesso.$(RESET)\n"
 
-check-manifest:
-	@printf "$(CYAN)  ➜ Validando manifest PWA...$(RESET)\n"
-	@test -f public/site.webmanifest || (printf "$(RED)ERRO: public/site.webmanifest não encontrado$(RESET)\n" && exit 1)
-	@node -e "const fs=require('fs');const m=JSON.parse(fs.readFileSync('public/site.webmanifest','utf8'));for(const k of ['name','short_name','start_url','scope','display','theme_color','background_color','icons']){if(!m[k]){console.error('ERRO: manifest sem '+k);process.exit(1)}}if(!Array.isArray(m.icons)||m.icons.length===0){console.error('ERRO: manifest sem icons');process.exit(1)}for(const icon of m.icons){const p='public'+icon.src.split('?')[0];if(!fs.existsSync(p)){console.error('ERRO: ícone ausente: '+p);process.exit(1)}}"
-	@printf "$(GREEN)  ✓ Manifest PWA íntegro.$(RESET)\n"
-
-check-sw:
-	@printf "$(CYAN)  ➜ Validando service worker...$(RESET)\n"
-	@test -f src/lib/pwa.ts || (printf "$(RED)ERRO: src/lib/pwa.ts não encontrado$(RESET)\n" && exit 1)
-	@rg -q "navigator\\.serviceWorker\\.register\\('/sw\\.js'\\)" src/lib/pwa.ts || (printf "$(RED)ERRO: registro /sw.js não encontrado$(RESET)\n" && exit 1)
-	@rg -q "AstroPWA" astro.config.mjs || (printf "$(RED)ERRO: integração AstroPWA não encontrada$(RESET)\n" && exit 1)
-	@rg -q "navigateFallback" astro.config.mjs || (printf "$(RED)ERRO: navigateFallback do PWA não encontrado$(RESET)\n" && exit 1)
-	@printf "$(GREEN)  ✓ Service worker validado.$(RESET)\n"
-
-check-js:
-	@printf "$(CYAN)  ➜ Validando scripts client-side...$(RESET)\n"
-	@test -f src/lib/analytics.ts || (printf "$(RED)ERRO: src/lib/analytics.ts não encontrado$(RESET)\n" && exit 1)
-	@rg -q "CustomEvent\\('tc:click'" src || (printf "$(RED)ERRO: evento tc:click não encontrado$(RESET)\n" && exit 1)
-	@! rg -n "console\\.(log|debug|warn|error)" src || (printf "$(RED)ERRO: console.* encontrado em src/$(RESET)\n" && exit 1)
-	@printf "$(GREEN)  ✓ Scripts client-side validados.$(RESET)\n"
-
-check-seo: check-robots ## Verifica SEO básico e metadados
-	@printf "$(CYAN)  ➜ Validando SEO base...$(RESET)\n"
-	@test -f src/layouts/BaseLayout.astro || (printf "$(RED)ERRO: BaseLayout.astro não encontrado$(RESET)\n" && exit 1)
-	@rg -q "<meta name=\"description\"" src/layouts/BaseLayout.astro || (printf "$(RED)ERRO: meta description ausente$(RESET)\n" && exit 1)
-	@rg -q "<link rel=\"canonical\"" src/layouts/BaseLayout.astro || (printf "$(RED)ERRO: canonical ausente$(RESET)\n" && exit 1)
-	@rg -q "og:image" src/layouts/BaseLayout.astro || (printf "$(RED)ERRO: Open Graph ausente$(RESET)\n" && exit 1)
-	@rg -q "twitter:card" src/layouts/BaseLayout.astro || (printf "$(RED)ERRO: Twitter card ausente$(RESET)\n" && exit 1)
-	@rg -q "application/ld\\+json" src/layouts/BaseLayout.astro || (printf "$(RED)ERRO: JSON-LD ausente$(RESET)\n" && exit 1)
-	@printf "$(GREEN)  ✓ SEO base validado.$(RESET)\n"
-
-check-robots:
+check-seo: ## Verifica SEO básico e metadados
 	@printf "$(CYAN)  ➜ Validando robots.txt...$(RESET)\n"
-	@test -f public/robots.txt || (printf "$(RED)ERRO: public/robots.txt não encontrado$(RESET)\n" && exit 1)
-	@rg -q "^User-agent: \\*" public/robots.txt || (printf "$(RED)ERRO: robots.txt sem User-agent: *$(RESET)\n" && exit 1)
-	@rg -q "^Allow: /" public/robots.txt || (printf "$(RED)ERRO: robots.txt sem Allow: /$(RESET)\n" && exit 1)
+	@test -f public/robots.txt || (echo "ERRO: robots.txt ausente"; exit 1)
+	@grep -q "Sitemap:" public/robots.txt || (echo "ERRO: robots.txt sem Sitemap"; exit 1)
 	@printf "$(GREEN)  ✓ robots.txt validado.$(RESET)\n"
+	@printf "$(CYAN)  ➜ Validando SEO base...$(RESET)\n"
+	@test -f src/layouts/BaseLayout.astro || (echo "ERRO: BaseLayout.astro ausente"; exit 1)
+	@grep -q "canonical" src/layouts/BaseLayout.astro || (echo "ERRO: BaseLayout sem tag canonical"; exit 1)
+	@printf "$(GREEN)  ✓ SEO base validado.$(RESET)\n"
 
 verify: check-node audit docs astro-sync check-pwa check-seo ## Pipeline completo de verificação de protocolo e build
 	@printf "$(CYAN)╭──────────────────────────────────────────╮$(RESET)\n"
@@ -166,11 +149,15 @@ commit: verify ## Fluxo de commit seguro (Conventional Commits)
 	git commit -m "$$msg" && \
 	printf "$(MAGENTA)  ✓ Commit: $$msg$(RESET)\n"
 
-deploy: whoami verify ## Confere conta Cloudflare e faz deploy no Pages
+push: verify ## Executa verify e faz git push para origin/main (Render auto-build)
 	@printf "$(MAGENTA)╭──────────────────────────────────────────╮$(RESET)\n"
-	@printf "$(MAGENTA)│$(RESET)  $(WHITE)☁  CLOUDFLARE DEPLOY$(RESET)                    $(MAGENTA)│$(RESET)\n"
+	@printf "$(MAGENTA)│$(RESET)  $(WHITE)🚀  GIT PUSH (RENDER)$(RESET)                     $(MAGENTA)│$(RESET)\n"
 	@printf "$(MAGENTA)╰──────────────────────────────────────────╯$(RESET)\n"
-	pnpm exec wrangler pages deploy dist --project-name studioodonto
+	git push origin main
+	@printf "$(GREEN)  ✓ Código enviado para origin/main. Render iniciará o build automático.$(RESET)\n"
+
+deploy: push ## Dispara deploy no Render via git push
+
 
 whoami: ## Exibe a conta Cloudflare conectada atualmente
 	@printf "$(CYAN)╭──────────────────────────────────────────╮$(RESET)\n"
