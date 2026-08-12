@@ -29,11 +29,18 @@ export const onRequestPost = async (context: PagesFunctionContext<Env>) => {
   try {
     const { request, env } = context;
 
-    const token = env.META_API_TOKEN || process.env.META_API_TOKEN;
-    const pixelId =
-      env.PUBLIC_META_PIXEL_ID ||
-      process.env.PUBLIC_META_PIXEL_ID ||
-      '2786954951664102';
+    const getEnvVar = (key: string): string | undefined => {
+      if (env && typeof (env as any)[key] === 'string') {
+        return (env as any)[key];
+      }
+      if (typeof process !== 'undefined' && process?.env?.[key]) {
+        return process.env[key];
+      }
+      return undefined;
+    };
+
+    const token = getEnvVar('META_API_TOKEN');
+    const pixelId = getEnvVar('PUBLIC_META_PIXEL_ID') || '2786954951664102';
 
     if (!token) {
       return new Response(
