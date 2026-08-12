@@ -1,0 +1,13 @@
+{
+  "routes": [
+    {
+      "routePath": "/api/meta-capi",
+      "mountPath": "/api",
+      "method": "POST",
+      "module": [
+        "api/meta-capi.ts:onRequestPost"
+      ]
+    }
+  ],
+  "baseURL": "/"
+}

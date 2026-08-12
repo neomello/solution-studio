@@ -33,10 +33,10 @@ help: ## Exibe os comandos disponíveis
 	@grep -E '^(check-node|install|repair|clean):.*## ' makefile \
 		| sort \
 		| awk 'BEGIN {FS = ":.*## "}; {printf "  \033[0;36m◆ %-16s\033[0m \033[0;90m%s\033[0m\n", $$1, $$2}'
-	@printf "$(DIM)  ·─── DEPLOY & IMPLANTAÇÃO (RENDER) ─────────$(RESET)\n"
-	@grep -E '^(deploy|push):.*## ' makefile \
+	@printf "$(DIM)  ·─── DEPLOY & IMPLANTAÇÃO ──────────────────$(RESET)\n"
+	@grep -E '^(deploy|deploy-cf|push|cf-login|whoami|cf-logout):.*## ' makefile \
 		| sort \
-		| awk 'BEGIN {FS = ":.*## "}; {printf "  \033[0;36m◆ %-16s\033[0m \033[0m\n", $$1, $$2}'
+		| awk 'BEGIN {FS = ":.*## "}; {printf "  \033[0;36m◆ %-16s\033[0m \033[0;90m%s\033[0m\n", $$1, $$2}'
 	@printf "\n"
 	@printf "$(DIM)  ·─── DESENVOLVIMENTO ───────────────────────$(RESET)\n"
 	@grep -E '^(dev|build|preview):.*## ' makefile \
@@ -156,8 +156,14 @@ push: verify ## Executa verify e faz git push para origin/main (Render auto-buil
 	git push origin main
 	@printf "$(GREEN)  ✓ Código enviado para origin/main. Render iniciará o build automático.$(RESET)\n"
 
-deploy: push ## Dispara deploy no Render via git push
+deploy-cf: verify ## Faz deploy direto para o Cloudflare Pages (instantâneo)
+	@printf "$(MAGENTA)╭──────────────────────────────────────────╮$(RESET)\n"
+	@printf "$(MAGENTA)│$(RESET)  $(WHITE)☁  CLOUDFLARE PAGES DEPLOY$(RESET)              $(MAGENTA)│$(RESET)\n"
+	@printf "$(MAGENTA)╰──────────────────────────────────────────╯$(RESET)\n"
+	pnpm exec wrangler pages deploy dist --project-name studioodonto
+	@printf "$(GREEN)  ✓ Deploy no Cloudflare Pages concluído com sucesso!$(RESET)\n"
 
+deploy: deploy-cf push ## Executa deploy completo (Cloudflare Pages + Git push para Render)
 
 whoami: ## Exibe a conta Cloudflare conectada atualmente
 	@printf "$(CYAN)╭──────────────────────────────────────────╮$(RESET)\n"
