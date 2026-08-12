@@ -62,12 +62,29 @@ Consolidação da infraestrutura de medição, descoberta e deploy:
   - DNS e SSL gerenciados pela Cloudflare apontando para o Render.
 - **Documentação de Referência**: `docs/META-config.md`.
 
+### 2026-08-12 — Deploy Cloudflare Pages, Rotas Curta /wa & /agendar e Meta Ads
+
+Consolidação de infraestrutura e tráfego pago:
+
+- **Deploy Oficial no Cloudflare Pages**:
+  - Projeto `studioodonto` criado e publicado diretamente no Cloudflare Pages (`studioodonto.pages.dev` / `studioodonto.xyz`).
+  - Autenticação e comandos de CLI via `make cf-login`, `make whoami` e `make deploy-cf` (tempo de deploy < 2 segundos).
+- **Rotas de Redirecionamento Curto (`/wa` & `/agendar`)**:
+  - Criadas as páginas `src/pages/wa.astro` e `src/pages/agendar.astro` voltadas para anúncios do Meta Ads (ex: resposta automática a comentários com `utm_medium=comment_auto_reply`).
+  - As rotas disparam o evento **`Contact`** via Meta Dual-Tracking (Navegador + C-API) com `event_id` idêntico e redirecionam para o WhatsApp preservando todas as UTMs.
+- **Verificação Google Search Console**:
+  - Injetada a meta tag `<meta name="google-site-verification" content="r0bzqvqZmUZ22-Pq_JYvEEIcegKJG2hf-2XarX-nYME" />` no `<head>` do `BaseLayout.astro`.
+- **Atualização de Pacotes & Resolução TypeScript**:
+  - Pacotes atualizados para `astro 7.2.1`, `@lucide/astro 1.31.0` e `wrangler 4.121.0`.
+  - Resolvido o aviso `ts(2835)` em scripts Astro client-side utilizando importação explícita de módulos.
+
 ────────────────────────────────────────
 
 ## ◬ Integrações Ativas & Validadas
 
 - **Google Analytics 4**: ID `G-3M1YV9J2DB`
-- **Meta Pixel**: ID `2786954951664102` (Dual-Tracking com Conversions API)
+- **Meta Pixel & C-API**: ID `2786954951664102` (Dual-Tracking ativo via Edge Function `/api/meta-capi`)
+- **Rotas Curta WhatsApp**: `/wa` e `/agendar` ativas com captura de UTMs e disparo do evento `Contact`
 - **Captura de parâmetros UTM**: Ativo no sessionStorage com repasse para links de WhatsApp
 - **PWA & Offline Service Worker**: Configurado e validado
 - **SEO/AEO & Content Signals**: Ativos em `robots.txt` e `llms.txt`

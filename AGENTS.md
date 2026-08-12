@@ -16,9 +16,9 @@ Instruções e regras locais para agentes autônomos atuando neste nó digital:
 
 - **Projeto**: Studio Odonto Official Hub
 - **Papel**: Camada zero da presença digital oficial da Studio Odonto (Solution Odonto)
-- **Stack**: Astro, TypeScript, PWA
+- **Stack**: Astro 7.2.1, TypeScript, PWA
 - **Package Manager**: PNPM (versão >= 11)
-- **Deploy**: Render.com (serviço: `solution-studio.onrender.com`) + Cloudflare DNS
+- **Deploy Oficial**: Cloudflare Pages (`studioodonto.pages.dev` / `studioodonto.xyz`) + Render.com (backup)
 - **Domínio SEO/JSON-LD**: `https://studioodonto.xyz`
 
 ────────────────────────────────────────
@@ -70,19 +70,21 @@ Valores oficiais validados pelo cliente:
 - **Instagram**: `https://www.instagram.com/solutionodonto/`
 - **E-mail**: `lucieneleao@studioodonto.xyz`
 - **Facebook (SEO/JSON-LD)**: `Studio Odonto` (Página comercial ID: `708178602387338`)
+- **Google Analytics 4**: `G-3M1YV9J2DB`
+- **Meta Pixel**: `2786954951664102` (Dual-Tracking ativo via Edge Function `/api/meta-capi`)
+- **Google Search Console**: Verificação via meta tag `r0bzqvqZmUZ22-Pq_JYvEEIcegKJG2hf-2XarX-nYME`
+- **Rotas de Redirecionamento Curto**: `/wa` e `/agendar` (disparam evento `Contact` e repassam UTMs)
 - **Paleta de Cores**: Bege Claro `#F7F5F0`, Ouro `#DB9E16`, Texto `#000000`
 - **Logotipos**: `public/logo_horiz.svg` e `public/logos/logo.png`
 
 ────────────────────────────────────────
 
-## ◬ Integrações Previstas
+## ◬ Integrações Ativas
 
-Mantenha o desligamento seguro e degradável para qualquer recurso externo:
-
-- Google Analytics
-- Meta Pixel & Conversions API (C-API) (Ver `docs/META-config.md`)
-- Captura de parâmetros UTM
-- Formulários de contato/leads
+- Google Analytics 4 (`G-3M1YV9J2DB`)
+- Meta Pixel & Conversions API (C-API Dual-Tracking) (Ver `docs/META-config.md`)
+- Captura de parâmetros UTM (propagação dinâmica em links de WhatsApp)
+- Content Signals (IETF draft) em `public/robots.txt` + `public/llms.txt`
 
 ────────────────────────────────────────
 

@@ -55,26 +55,24 @@ make preview
 
 ────────────────────────────────────────
 
-## ◬ Deploy & Hospedagem (Render.com + Cloudflare DNS)
+## ◬ Deploy & Hospedagem (Cloudflare Pages + Edge Functions)
 
-O deploy deste hub digital é hospedado no **Render.com** (serviço: `solution-studio.onrender.com`) com DNS e SSL gerenciados via **Cloudflare** (`studioodonto.xyz`).
+O deploy oficial deste hub digital é executado no **Cloudflare Pages** (projeto: `studioodonto`, URL: `studioodonto.pages.dev` / `studioodonto.xyz`).
 
-### Processo de Publicação via Render.com
+### Processo de Publicação via Cloudflare Pages
 
-1. Execute `make verify` ou `make deploy`.
-2. O comando enviará os commits para a branch `main` do GitHub (`neomello/solution-studio`).
-3. O Render compilará o build automaticamente a cada push na branch `main`.
-3. No painel do cPanel, abra o **Gerenciador de arquivos** e vá para a pasta `public_html/`.
-4. Faça backup/renomeie a pasta antiga antes de substituições destrutivas.
-5. Envie e extraia o arquivo ZIP dentro de `public_html/`.
-6. Confirme a existência física dos arquivos críticos:
-   - `public_html/index.html`
-   - `public_html/.htaccess`
-   - `public_html/sw.js`
-   - `public_html/_assets/` (pasta de assets compilados)
-   - `public_html/robots.txt`
-   - `public_html/sitemap-index.xml` (ou `sitemap.xml`)
-7. Teste o acesso de ponta a ponta na URL de produção: `https://studioodonto.xyz/`
+1. **Autenticar CLI Cloudflare**:
+   ```bash
+   make cf-login
+   ```
+2. **Fazer Deploy Instantâneo**:
+   ```bash
+   make deploy-cf
+   ```
+3. **Vincular Domínio Personalizado no Cloudflare Pages**:
+   - Acesse o painel Cloudflare ➔ **Workers & Pages** ➔ Projeto **`studioodonto`**.
+   - Na aba **Custom Domains**, clique em **Add Custom Domain** e adicione `studioodonto.xyz` e `www.studioodonto.xyz`.
+   - *Nota*: Adicionar o domínio diretamente nas configurações do Pages evita o `Error 1000: DNS points to prohibited IP`.
 
 ────────────────────────────────────────
 

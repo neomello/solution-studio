@@ -11,13 +11,34 @@
 ========================================
 Status: ACTIVE
 Version: v1.0.0
-Stack: Astro 7 · TypeScript · PWA
-Deploy: cPanel
+Stack: Astro 7.2.1 · TypeScript · PWA · Cloudflare Edge
+Deploy Oficial: Cloudflare Pages (studioodonto.pages.dev / studioodonto.xyz)
 ========================================
 ```
 
 > **Cliente:** Studio Odonto (Solution Odonto)
-> **Endereço:** Edificio Aquarius Center Empresarial - R. T-36 - St. Bueno, Goiânia - GO, 74230-105
+> **Endereço:** Edifício Aquarius Center Empresarial - R. T-36 - St. Bueno, Goiânia - GO, 74230-105
+
+────────────────────────────────────────
+
+## 🔗 Links Rápidos do Ecossistema (Fácil Acesso)
+
+| Categoria | Recurso / Destino | Link |
+|---|---|---|
+| **Portal Oficial** | Domínio Principal | [studioodonto.xyz](https://studioodonto.xyz/) |
+| **Cloudflare Pages** | URL Direta Edge | [studioodonto.pages.dev](https://studioodonto.pages.dev/) |
+| **Meta Ads / Automação** | Rota Curta WhatsApp | [studioodonto.xyz/wa](https://studioodonto.xyz/wa) |
+| **Meta Ads / Automação** | Rota Alias Agendamento | [studioodonto.xyz/agendar](https://studioodonto.xyz/agendar) |
+| **Meta Ads / Automação** | Link com UTM Comment Auto-Reply | [studioodonto.xyz/wa?utm_medium=comment_auto_reply](https://studioodonto.xyz/wa?utm_medium=comment_auto_reply) |
+| **WhatsApp Direto** | Atendimento Comercial (`+55 62 99267-2199`) | [wa.me/5562992672199](https://wa.me/5562992672199) |
+| **Redes Sociais** | Instagram Oficial (`@solutionodonto`) | [instagram.com/solutionodonto](https://www.instagram.com/solutionodonto/) |
+| **Redes Sociais** | Página Comercial Facebook (`ID: 708178602387338`) | [facebook.com/StudioOdonto](https://www.facebook.com/profile.php?id=708178602387338) |
+| **Contato Corporativo** | E-mail Oficial | [lucieneleao@studioodonto.xyz](mailto:lucieneleao@studioodonto.xyz) |
+| **Descoberta por IA** | Manifesto LLMs Agentic Ingestion | [studioodonto.xyz/llms.txt](https://studioodonto.xyz/llms.txt) |
+| **SEO & Indexação** | Robots + Content Signals (IETF Draft) | [studioodonto.xyz/robots.txt](https://studioodonto.xyz/robots.txt) |
+| **SEO & Indexação** | Sitemap XML | [studioodonto.xyz/sitemap.xml](https://studioodonto.xyz/sitemap.xml) |
+| **Painéis & Analytics** | Meta Events Manager (Pixel `2786954951664102`) | [Meta Events Manager](https://eventsmanager.facebook.com/events/v2/overview?selected_data_source_id=2786954951664102) |
+| **Painéis & Analytics** | Google Analytics 4 (`G-3M1YV9J2DB`) | [Google Analytics Stream](https://analytics.google.com/) |
 
 ────────────────────────────────────────
 
@@ -39,6 +60,7 @@ make install      # instala dependências e executa o rebuild automático
 make dev          # inicia o servidor local em http://localhost:4321
 make build        # gera o build de produção estático em dist/
 make preview      # visualiza o build de produção localmente
+make deploy-cf    # faz deploy instantâneo no Cloudflare Pages
 make verify       # executa a validação completa do protocolo
 ```
 
