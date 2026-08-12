@@ -18,13 +18,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </div>
 
   <script>
-    import { dispatchMetaDualEvent } from '../lib/analytics';
+    import { dispatchMetaDualEvent } from '../lib/analytics.js';
 
     (function() {
       const params = new URLSearchParams(window.location.search);
       const defaultText = "Olá, vi o anúncio e quero agendar minha avaliação com condição especial!";
       const customText = params.get('text') || defaultText;
-      
+
       const phone = "5562992672199";
       const targetUrl = new URL(`https://wa.me/${phone}`);
       targetUrl.searchParams.set('text', customText);

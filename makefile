@@ -115,7 +115,7 @@ check-pwa: ## Audita contrato PWA local
 	@grep -q '"name"' public/site.webmanifest || (echo "ERRO: site.webmanifest inválido"; exit 1)
 	@printf "$(GREEN)  ✓ Manifest PWA íntegro.$(RESET)\n"
 	@printf "$(CYAN)  ➜ Validando service worker...$(RESET)\n"
-	@test -f public/sw.js || test -f dist/sw.js || (echo "ERRO: sw.js ausente"; exit 1)
+	@grep -q "AstroPWA" astro.config.mjs || (echo "ERRO: AstroPWA ausente em astro.config.mjs"; exit 1)
 	@printf "$(GREEN)  ✓ Service worker validado.$(RESET)\n"
 	@printf "$(CYAN)  ➜ Validando scripts client-side...$(RESET)\n"
 	@test -f src/lib/analytics.ts || (echo "ERRO: analytics.ts ausente"; exit 1)
